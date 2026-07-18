@@ -3,17 +3,23 @@
    MAIN GAME ENGINE
 ===================================== */
 
-import { kategori1 } from "../data/darjah1/matematik/kategori1.js";
+
+import {
+getQuestions
+} from "./questions.js";
+
 
 import {
 startTimer,
 stopTimer
 } from "./timer.js";
 
+
 import {
 correctReward,
 wrongReward
 } from "./score.js";
+
 
 import {
 playCorrect,
@@ -22,9 +28,10 @@ playWrong
 
 
 
-// AMBIL SOALAN DARIPADA DATA
 
-let questions = kategori1;
+
+let questions = [];
+
 
 
 
@@ -44,15 +51,49 @@ gameData.correct = 0;
 gameData.wrong = 0;
 
 
+
+// AMBIL SOALAN IKUT PILIHAN
+
+
+questions = getQuestions(
+
+gameData.grade,
+
+gameData.subject,
+
+gameData.category
+
+);
+
+
+
+
+if(questions.length === 0){
+
+
+alert(
+"Tiada soalan untuk kategori ini"
+);
+
+
+return;
+
+
+}
+
+
+
 showScreen(
 "gameScreen"
 );
+
 
 
 loadQuestion();
 
 
 }
+
 
 
 
@@ -87,11 +128,14 @@ return;
 
 
 
+
 document.getElementById(
 "questionNumber"
 ).innerText =
 
-"Soalan " +
+"Soalan "
+
++
 
 (gameData.currentQuestion + 1)
 
@@ -105,6 +149,7 @@ questions.length;
 
 
 
+
 document.getElementById(
 "questionText"
 ).innerText =
@@ -113,9 +158,12 @@ q.question;
 
 
 
+
+
 document.getElementById(
 "answerA"
 ).innerText =
+
 "A. " + q.A;
 
 
@@ -123,6 +171,7 @@ document.getElementById(
 document.getElementById(
 "answerB"
 ).innerText =
+
 "B. " + q.B;
 
 
@@ -130,6 +179,7 @@ document.getElementById(
 document.getElementById(
 "answerC"
 ).innerText =
+
 "C. " + q.C;
 
 
@@ -137,6 +187,7 @@ document.getElementById(
 document.getElementById(
 "answerD"
 ).innerText =
+
 "D. " + q.D;
 
 
@@ -144,10 +195,12 @@ document.getElementById(
 updateProgress();
 
 
+
 startTimer();
 
 
 }
+
 
 
 
@@ -162,6 +215,7 @@ window.checkAnswer=function(answer){
 
 
 stopTimer();
+
 
 
 let q = questions[
@@ -200,12 +254,11 @@ setTimeout(()=>{
 nextQuestion();
 
 
-},800);
+},700);
 
 
 
 }
-
 
 
 
@@ -233,10 +286,11 @@ loadQuestion();
 
 
 
-// BAR PROGRESS
+// PROGRESS BAR
 
 
 function updateProgress(){
+
 
 
 let bar = document.getElementById(
@@ -248,7 +302,7 @@ let bar = document.getElementById(
 if(bar){
 
 
-let progress =
+let value =
 
 (
 
@@ -260,19 +314,23 @@ questions.length
 
 )
 
-*100;
+*
+
+100;
 
 
 
 bar.style.width =
 
-progress+"%";
+value + "%";
 
 
 }
 
 
+
 }
+
 
 
 
@@ -292,18 +350,23 @@ stopTimer();
 document.getElementById(
 "correctScore"
 ).innerText =
+
 gameData.correct;
+
 
 
 document.getElementById(
 "wrongScore"
 ).innerText =
+
 gameData.wrong;
+
 
 
 showScreen(
 "resultScreen"
 );
+
 
 
 }
@@ -314,7 +377,8 @@ showScreen(
 
 
 
-// KELUAR
+
+// KELUAR GAME
 
 
 window.exitGame=function(){
@@ -329,6 +393,8 @@ showScreen(
 
 
 }
+
+
 
 
 
