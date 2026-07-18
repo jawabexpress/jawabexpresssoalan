@@ -3,18 +3,17 @@
    MAIN GAME ENGINE
 ===================================== */
 
+import { kategori1 } from "../data/darjah1/matematik/kategori1.js";
 
 import {
 startTimer,
 stopTimer
 } from "./timer.js";
 
-
 import {
 correctReward,
 wrongReward
 } from "./score.js";
-
 
 import {
 playCorrect,
@@ -23,34 +22,9 @@ playWrong
 
 
 
+// AMBIL SOALAN DARIPADA DATA
 
-
-// CONTOH DATA SOALAN
-// NANTI AKAN DIGANTI DENGAN
-// fail data/darjah1/kategori1.js
-
-
-let questions = [
-
-{
-question:"Apakah nombor bagi perkataan satu?",
-A:"1",
-B:"2",
-C:"3",
-D:"4",
-answer:"A"
-},
-
-{
-question:"2 + 3 = ?",
-A:"4",
-B:"5",
-C:"6",
-D:"7",
-answer:"B"
-}
-
-];
+let questions = kategori1;
 
 
 
@@ -70,11 +44,9 @@ gameData.correct = 0;
 gameData.wrong = 0;
 
 
-
 showScreen(
 "gameScreen"
 );
-
 
 
 loadQuestion();
@@ -97,9 +69,7 @@ stopTimer();
 
 
 
-let q =
-
-questions[
+let q = questions[
 gameData.currentQuestion
 ];
 
@@ -114,8 +84,6 @@ return;
 
 
 }
-
-
 
 
 
@@ -137,15 +105,11 @@ questions.length;
 
 
 
-
-
 document.getElementById(
 "questionText"
 ).innerText =
 
 q.question;
-
-
 
 
 
@@ -177,16 +141,13 @@ document.getElementById(
 
 
 
-
-
-
 updateProgress();
+
 
 startTimer();
 
 
 }
-
 
 
 
@@ -200,22 +161,16 @@ startTimer();
 window.checkAnswer=function(answer){
 
 
-
 stopTimer();
 
 
-
-let q =
-
-questions[
+let q = questions[
 gameData.currentQuestion
 ];
 
 
 
-
 if(answer === q.answer){
-
 
 
 correctReward();
@@ -239,9 +194,6 @@ playWrong();
 
 
 
-
-
-
 setTimeout(()=>{
 
 
@@ -253,6 +205,7 @@ nextQuestion();
 
 
 }
+
 
 
 
@@ -280,16 +233,13 @@ loadQuestion();
 
 
 
-
-// UPDATE BAR PROGRESS
+// BAR PROGRESS
 
 
 function updateProgress(){
 
 
-let bar =
-
-document.getElementById(
+let bar = document.getElementById(
 "progressBar"
 );
 
@@ -310,23 +260,19 @@ questions.length
 
 )
 
-*
-
-100;
+*100;
 
 
 
 bar.style.width =
 
-progress + "%";
-
-
-
-}
+progress+"%";
 
 
 }
 
+
+}
 
 
 
@@ -343,21 +289,16 @@ function endGame(){
 stopTimer();
 
 
-
 document.getElementById(
 "correctScore"
 ).innerText =
-
 gameData.correct;
-
 
 
 document.getElementById(
 "wrongScore"
 ).innerText =
-
 gameData.wrong;
-
 
 
 showScreen(
@@ -373,7 +314,7 @@ showScreen(
 
 
 
-// KELUAR GAME
+// KELUAR
 
 
 window.exitGame=function(){
@@ -394,8 +335,7 @@ showScreen(
 
 
 
-
-// ULANG GAME
+// ULANG
 
 
 window.restartGame=function(){
