@@ -1,0 +1,368 @@
+/* =====================================
+   JOM PANDAI ACADEMY BATTLE
+   ANIMATION STYLE
+===================================== */
+
+
+/* FADE MASUK SCREEN */
+
+.screen.active{
+
+    animation:fadeIn .4s ease;
+
+}
+
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+        transform:scale(.95);
+
+    }
+
+
+    to{
+
+        opacity:1;
+        transform:scale(1);
+
+    }
+
+}
+
+
+
+
+
+/* BUTTON BOUNCE */
+
+.menu-btn{
+
+    animation:
+    bounceIn .8s ease;
+
+}
+
+
+
+@keyframes bounceIn{
+
+
+    0%{
+
+        transform:scale(.5);
+        opacity:0;
+
+    }
+
+
+    70%{
+
+        transform:scale(1.1);
+
+    }
+
+
+    100%{
+
+        transform:scale(1);
+
+        opacity:1;
+
+    }
+
+
+}
+
+
+
+
+
+
+/* COIN EFFECT */
+
+.coin-add{
+
+    animation:
+
+    coinPop .5s ease;
+
+}
+
+
+
+@keyframes coinPop{
+
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+
+    50%{
+
+        transform:translateY(-15px)
+        scale(1.2);
+
+    }
+
+
+    100%{
+
+        transform:translateY(0)
+        scale(1);
+
+    }
+
+
+}
+
+
+
+
+
+
+/* JAWAPAN BETUL */
+
+
+.correct-answer{
+
+
+    background:#4caf50 !important;
+
+    animation:
+
+    correct .5s ease;
+
+
+}
+
+
+
+
+@keyframes correct{
+
+
+    0%{
+
+        transform:scale(1);
+
+    }
+
+
+    50%{
+
+        transform:scale(1.15);
+
+    }
+
+
+    100%{
+
+        transform:scale(1);
+
+    }
+
+
+}
+
+
+
+
+
+
+
+/* JAWAPAN SALAH */
+
+
+.wrong-answer{
+
+
+    background:#f44336 !important;
+
+
+    animation:
+
+    shake .4s;
+
+
+}
+
+
+
+
+@keyframes shake{
+
+
+    0%,100%{
+
+        transform:translateX(0);
+
+    }
+
+
+    25%{
+
+        transform:translateX(-10px);
+
+    }
+
+
+    75%{
+
+        transform:translateX(10px);
+
+    }
+
+
+}
+
+
+
+
+
+
+
+/* LEVEL UP */
+
+
+.level-up{
+
+
+    animation:
+
+    levelUp 1s infinite;
+
+
+}
+
+
+
+
+@keyframes levelUp{
+
+
+    0%{
+
+        transform:scale(1);
+
+    }
+
+
+    50%{
+
+        transform:scale(1.2);
+
+    }
+
+
+    100%{
+
+        transform:scale(1);
+
+    }
+
+
+}
+
+
+
+
+
+
+/* CONFETTI */
+
+
+.confetti{
+
+
+    position:absolute;
+
+    width:10px;
+
+    height:10px;
+
+    animation:
+
+    fall 3s linear;
+
+
+}
+
+
+
+@keyframes fall{
+
+
+    from{
+
+        transform:
+        translateY(-100px)
+        rotate(0deg);
+
+
+    }
+
+
+    to{
+
+        transform:
+        translateY(700px)
+        rotate(360deg);
+
+
+    }
+
+
+}
+
+
+
+
+
+
+/* LOADING */
+
+
+.loading{
+
+
+    animation:
+
+    pulse 1s infinite;
+
+
+}
+
+
+
+
+@keyframes pulse{
+
+
+    0%{
+
+        opacity:.5;
+
+    }
+
+
+    50%{
+
+        opacity:1;
+
+    }
+
+
+    100%{
+
+        opacity:.5;
+
+    }
+
+
+}
