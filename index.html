@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Jom Pandai Academy Battle</title>
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/animation.css">
+<link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+<body>
+
+<!-- MAIN APP -->
+
+<div id="app">
+
+
+<!-- MENU UTAMA -->
+
+<section id="mainMenu" class="screen active">
+
+<div class="logo-area">
+
+<h1>
+🚀 JOM PANDAI
+<br>
+<span>ACADEMY BATTLE</span>
+</h1>
+
+<p>
+Belajar • Bermain • Menang
+</p>
+
+</div>
+
+
+<div class="menu-buttons">
+
+<button onclick="startMode('solo')" class="menu-btn solo">
+🎮 SOLO
+</button>
+
+
+<button onclick="startMode('duel')" class="menu-btn duel">
+⚔️ DUEL
+</button>
+
+
+<button onclick="startMode('squad')" class="menu-btn squad">
+🔥 SQUAD BATTLE
+</button>
+
+
+</div>
+
+
+<div class="bottom-menu">
+
+<button onclick="openLearning()">
+📚 Pembelajaran
+</button>
+
+
+<button onclick="openAchievement()">
+🏆 Pencapaian
+</button>
+
+
+<button onclick="openSetting()">
+⚙️ Tetapan
+</button>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- PILIH SUBJEK -->
+
+
+<section id="subjectMenu" class="screen">
+
+
+<h2>Pilih Subjek</h2>
+
+
+<div class="cards">
+
+
+<button onclick="selectSubject('math')">
+📗 Matematik
+</button>
+
+
+<button onclick="selectSubject('bm')">
+📘 Bahasa Melayu
+</button>
+
+
+<button onclick="selectSubject('english')">
+📙 English
+</button>
+
+
+<button onclick="selectSubject('science')">
+📕 Sains
+</button>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<!-- PILIH DARJAH -->
+
+
+<section id="gradeMenu" class="screen">
+
+
+<h2>Pilih Darjah</h2>
+
+
+<div class="grade-grid">
+
+
+<button onclick="selectGrade(1)">
+⭐ Darjah 1
+</button>
+
+
+<button onclick="selectGrade(2)">
+⭐ Darjah 2
+</button>
+
+
+<button onclick="selectGrade(3)">
+⭐ Darjah 3
+</button>
+
+
+<button onclick="selectGrade(4)">
+⭐ Darjah 4
+</button>
+
+
+<button onclick="selectGrade(5)">
+⭐ Darjah 5
+</button>
+
+
+<button onclick="selectGrade(6)">
+⭐ Darjah 6
+</button>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<!-- PILIH KATEGORI -->
+
+
+<section id="categoryMenu" class="screen">
+
+
+<h2>Pilih Kategori</h2>
+
+
+<div id="categoryList">
+
+
+</div>
+
+
+</section>
+
+
+<!-- GAME SCREEN -->
+
+<section id="gameScreen" class="screen">
+
+
+<!-- HUD -->
+
+<div class="game-hud">
+
+
+<div class="player-info">
+
+<div>
+❤️ <span id="life">5</span>
+</div>
+
+
+<div>
+🪙 <span id="coin">0</span>
+</div>
+
+
+<div>
+⭐ <span id="xp">0</span>
+</div>
+
+
+<div>
+🏆 Level <span id="level">1</span>
+</div>
+
+</div>
+
+
+
+<div class="timer-box">
+
+⏱️
+
+<span id="timer">
+15
+</span>
+
+</div>
+
+
+</div>
+
+
+
+
+
+<!-- PROGRESS -->
+
+
+<div class="progress-container">
+
+<div id="progressBar">
+
+</div>
+
+</div>
+
+
+
+
+
+<!-- QUESTION AREA -->
+
+
+<div class="question-box">
+
+
+<h3 id="questionNumber">
+
+Soalan 1 / 100
+
+</h3>
+
+
+<h2 id="questionText">
+
+Apakah jawapan yang betul?
+
+</h2>
+
+
+
+<div id="questionImage">
+
+</div>
+
+
+
+<div class="answer-grid">
+
+
+<button 
+class="answer-btn"
+onclick="checkAnswer('A')"
+id="answerA">
+
+A
+
+</button>
+
+
+
+<button 
+class="answer-btn"
+onclick="checkAnswer('B')"
+id="answerB">
+
+B
+
+</button>
+
+
+
+<button 
+class="answer-btn"
+onclick="checkAnswer('C')"
+id="answerC">
+
+C
+
+</button>
+
+
+
+<button 
+class="answer-btn"
+onclick="checkAnswer('D')"
+id="answerD">
+
+D
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<!-- GAME CONTROL -->
+
+
+<div class="game-control">
+
+
+<button onclick="pauseGame()">
+
+⏸️
+
+</button>
+
+
+<button onclick="toggleSound()">
+
+🔊
+
+</button>
+
+
+<button onclick="exitGame()">
+
+🏠
+
+</button>
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+<!-- RESULT SCREEN -->
+
+
+<section id="resultScreen" class="screen">
+
+
+<div class="result-box">
+
+
+<h1>
+
+🎉 Tamat!
+
+</h1>
+
+
+<h2>
+Keputusan Permainan
+</h2>
+
+
+
+<div class="result-item">
+
+Betul:
+
+<span id="correctScore">
+0
+</span>
+
+</div>
+
+
+
+<div class="result-item">
+
+Salah:
+
+<span id="wrongScore">
+0
+</span>
+
+</div>
+
+
+
+<div class="result-item">
+
+Coin:
+
+<span id="finalCoin">
+0
+</span>
+
+</div>
+
+
+
+<div class="result-item">
+
+XP:
+
+<span id="finalXP">
+0
+</span>
+
+</div>
+
+
+
+
+<button onclick="restartGame()">
+
+🔄 Main Lagi
+
+</button>
+
+
+
+<button onclick="backHome()">
+
+🏠 Menu Utama
+
+</button>
+
+
+
+</div>
+
+
+</section>
+
+
+<!-- LEARNING SCREEN -->
+
+<section id="learningScreen" class="screen">
+
+<div class="page-header">
+
+<h2>
+📚 Pembelajaran
+</h2>
+
+<button onclick="backHome()">
+🏠
+</button>
+
+</div>
+
+
+<div class="learning-card">
+
+<h3>
+Matematik
+</h3>
+
+<p>
+Latihan mengikut tahap Darjah 1 hingga Darjah 6.
+</p>
+
+
+<div class="learning-grid">
+
+<button>
+🔢 Kenal Nombor
+</button>
+
+
+<button>
+➕ Tambah
+</button>
+
+
+<button>
+➖ Tolak
+</button>
+
+
+<button>
+✖️ Darab
+</button>
+
+
+<button>
+➗ Bahagi
+</button>
+
+
+<button>
+💰 Wang & Masa
+</button>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+<!-- ACHIEVEMENT SCREEN -->
+
+
+<section id="achievementScreen" class="screen">
+
+
+<div class="page-header">
+
+
+<h2>
+🏆 Pencapaian
+</h2>
+
+
+<button onclick="backHome()">
+🏠
+</button>
+
+
+</div>
+
+
+
+
+<div class="achievement-list">
+
+
+<div class="badge locked">
+
+🔒
+
+<h3>
+Pelajar Baru
+</h3>
+
+<p>
+Jawab 10 soalan
+</p>
+
+</div>
+
+
+
+<div class="badge locked">
+
+🔒
+
+<h3>
+Pejuang Matematik
+</h3>
+
+<p>
+Jawab 100 soalan
+</p>
+
+</div>
+
+
+
+<div class="badge locked">
+
+🔒
+
+<h3>
+Juara Akademi
+</h3>
+
+<p>
+Capai Level 10
+</p>
+
+</div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+<!-- SETTING SCREEN -->
+
+
+<section id="settingScreen" class="screen">
+
+
+<div class="page-header">
+
+
+<h2>
+⚙️ Tetapan
+</h2>
+
+
+<button onclick="backHome()">
+
+🏠
+
+</button>
+
+
+</div>
+
+
+
+
+<div class="setting-box">
+
+
+<label>
+
+🔊 Bunyi
+
+<input 
+type="checkbox"
+id="soundToggle"
+checked>
+
+</label>
+
+
+
+<label>
+
+🎵 Muzik
+
+<input 
+type="checkbox"
+id="musicToggle"
+checked>
+
+</label>
+
+
+
+
+<label>
+
+🌙 Mod Gelap
+
+<input 
+type="checkbox"
+id="darkToggle">
+
+</label>
+
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+<!-- PLAYER DATA -->
+
+
+<section id="profileScreen" class="screen">
+
+
+<h2>
+👤 Profil Pemain
+</h2>
+
+
+<div class="profile-card">
+
+
+<h3 id="playerName">
+
+Pemain
+
+</h3>
+
+
+<p>
+Coin:
+<span id="profileCoin">
+0
+</span>
+
+</p>
+
+
+<p>
+XP:
+<span id="profileXP">
+0
+</span>
+
+</p>
+
+
+<p>
+Level:
+<span id="profileLevel">
+1
+</span>
+
+</p>
+
+
+
+</div>
+
+
+<button onclick="backHome()">
+
+Kembali
+
+</button>
+
+
+</section>
+
+
+<!-- NAME INPUT SCREEN -->
+
+<section id="nameScreen" class="screen">
+
+
+<div class="name-box">
+
+
+<h2>
+👋 Selamat Datang!
+</h2>
+
+
+<p>
+Masukkan nama pemain
+</p>
+
+
+<input 
+type="text"
+id="playerInput"
+placeholder="Nama anda">
+
+
+<button onclick="savePlayerName()">
+
+Mula Bermain 🚀
+
+</button>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+<!-- DUEL SCREEN -->
+
+
+<section id="duelScreen" class="screen">
+
+
+<div class="battle-header">
+
+
+<h2>
+⚔️ DUEL BATTLE
+</h2>
+
+
+</div>
+
+
+
+<div class="battle-player">
+
+
+<div class="player-card">
+
+
+<h3 id="player1Name">
+Anda
+</h3>
+
+
+<div class="health">
+
+❤️❤️❤️❤️❤️
+
+</div>
+
+
+</div>
+
+
+
+
+<div class="vs">
+
+VS
+
+</div>
+
+
+
+
+<div class="player-card">
+
+
+<h3>
+AI
+</h3>
+
+
+<div class="health">
+
+❤️❤️❤️❤️❤️
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+<div class="duel-question">
+
+
+<h2 id="duelQuestion">
+
+Soalan Duel
+
+</h2>
+
+
+<div id="duelAnswers">
+
+
+</div>
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- SQUAD SCREEN -->
+
+
+<section id="squadScreen" class="screen">
+
+
+<div class="battle-header">
+
+
+<h2>
+
+🔥 SQUAD BATTLE
+
+</h2>
+
+
+<p>
+
+Bekerjasama untuk kumpul markah tertinggi!
+
+</p>
+
+
+</div>
+
+
+
+<div class="team-area">
+
+
+<div class="team-member">
+
+👦 Pemain 1
+
+</div>
+
+
+<div class="team-member">
+
+👧 Pemain 2
+
+</div>
+
+
+<div class="team-member">
+
+🧑 Pemain 3
+
+</div>
+
+
+<div class="team-member">
+
+🤖 AI
+
+</div>
+
+
+</div>
+
+
+
+
+<button onclick="startSquadGame()">
+
+Mula Pertempuran
+
+</button>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- PAUSE POPUP -->
+
+
+<div id="pausePopup" class="popup">
+
+
+<div class="popup-box">
+
+
+<h2>
+
+⏸️ Permainan Dijeda
+
+</h2>
+
+
+
+<button onclick="resumeGame()">
+
+Sambung
+
+</button>
+
+
+
+<button onclick="exitGame()">
+
+Keluar
+
+</button>
+
+
+
+</div>
+
+
+</div>
+
+
+<!-- NOTIFICATION POPUP -->
+
+<div id="notification" class="notification">
+
+<span id="notificationText">
+
+</span>
+
+</div>
+
+
+
+
+
+<!-- AUDIO -->
+
+<audio id="correctSound">
+
+<source src="audio/correct.mp3">
+
+</audio>
+
+
+<audio id="wrongSound">
+
+<source src="audio/wrong.mp3">
+
+</audio>
+
+
+<audio id="clickSound">
+
+<source src="audio/click.mp3">
+
+</audio>
+
+
+<audio id="backgroundMusic" loop>
+
+<source src="audio/background.mp3">
+
+</audio>
+
+
+
+
+
+</div>
+<!-- END APP -->
+
+
+
+
+<!-- JAVASCRIPT FILES -->
+
+
+<script type="module" src="js/storage.js"></script>
+
+<script type="module" src="js/audio.js"></script>
+
+<script type="module" src="js/score.js"></script>
+
+<script type="module" src="js/timer.js"></script>
+
+<script type="module" src="js/game.js"></script>
+
+<script type="module" src="js/menu.js"></script>
+
+<script type="module" src="js/app.js"></script>
+
+
+
+</body>
+
+</html>
