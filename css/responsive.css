@@ -1,0 +1,195 @@
+/* =====================================
+   JOM PANDAI ACADEMY BATTLE
+   RESPONSIVE STYLE
+===================================== */
+
+
+
+/* TELEFON KECIL */
+
+@media(max-width:380px){
+
+
+.logo-area h1{
+
+    font-size:32px;
+
+}
+
+
+
+.menu-btn{
+
+    font-size:18px;
+
+    padding:15px;
+
+}
+
+
+
+.question-box h2{
+
+    font-size:20px;
+
+}
+
+
+
+.answer-btn{
+
+    padding:15px;
+
+    font-size:18px;
+
+}
+
+
+}
+
+
+
+
+
+/* TABLET */
+
+@media(min-width:600px){
+
+
+#app{
+
+    max-width:700px;
+
+}
+
+
+
+.logo-area h1{
+
+    font-size:55px;
+
+}
+
+
+
+.menu-btn{
+
+    font-size:26px;
+
+}
+
+
+
+.question-box{
+
+    padding:40px;
+
+}
+
+
+
+.answer-btn{
+
+    font-size:26px;
+
+    padding:25px;
+
+}
+
+
+
+}
+
+
+
+
+
+/* KOMPUTER */
+
+@media(min-width:1000px){
+
+
+body{
+
+    padding:30px;
+
+}
+
+
+
+#app{
+
+    min-height:900px;
+
+    border-radius:40px;
+
+    box-shadow:
+    0 20px 50px rgba(0,0,0,.2);
+
+}
+
+
+
+.bottom-menu{
+
+    bottom:30px;
+
+}
+
+
+
+}
+
+
+
+
+
+
+/* LANDSCAPE PHONE */
+
+
+@media(max-height:500px) and (orientation:landscape){
+
+
+.screen{
+
+    padding:15px;
+
+}
+
+
+
+.logo-area{
+
+    margin-top:10px;
+
+}
+
+
+
+.logo-area h1{
+
+    font-size:28px;
+
+}
+
+
+
+.menu-buttons{
+
+    margin-top:15px;
+
+    gap:10px;
+
+}
+
+
+
+.menu-btn{
+
+    padding:10px;
+
+}
+
+
+}
