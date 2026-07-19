@@ -1,1112 +1,773 @@
-<!DOCTYPE html>
-<html lang="ms">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Jom Pandai Academy Battle</title>
-
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/animation.css">
-<link rel="stylesheet" href="css/responsive.css">
-
-</head>
-
-<body>
-
-<!-- MAIN APP -->
-
-<div id="app">
-
-
-<!-- MENU UTAMA -->
-
-<section id="mainMenu" class="screen active">
-
-<div class="logo-area">
-
-<h1>
-🚀 JOM PANDAI
-<br>
-<span>ACADEMY BATTLE</span>
-</h1>
-
-<p>
-Belajar • Bermain • Menang
-</p>
-
-</div>
-
-
-<div class="menu-buttons">
-
-<button onclick="startMode('solo')" class="menu-btn solo">
-🎮 SOLO
-</button>
-
-
-<button onclick="startMode('duel')" class="menu-btn duel">
-⚔️ DUEL
-</button>
-
-
-<button onclick="startMode('squad')" class="menu-btn squad">
-🔥 SQUAD BATTLE
-</button>
-
-
-</div>
-
-
-<div class="bottom-menu">
-
-<button onclick="openLearning()">
-📚 Pembelajaran
-</button>
-
-
-<button onclick="openAchievement()">
-🏆 Pencapaian
-</button>
-
-
-<button onclick="openSetting()">
-⚙️ Tetapan
-</button>
-
-
-</div>
-
-
-</section>
-
-
-
-<!-- PILIH SUBJEK -->
-
-
-<section id="subjectMenu" class="screen">
-
-
-<h2>Pilih Subjek</h2>
-
-
-<div class="cards">
-
-
-<button onclick="selectSubject('math')">
-📗 Matematik
-</button>
-
-
-<button onclick="selectSubject('bm')">
-📘 Bahasa Melayu
-</button>
-
-
-<button onclick="selectSubject('english')">
-📙 English
-</button>
-
-
-<button onclick="selectSubject('science')">
-📕 Sains
-</button>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-<!-- PILIH DARJAH -->
-
-
-<section id="gradeMenu" class="screen">
-
-
-<h2>Pilih Darjah</h2>
-
-
-<div class="grade-grid">
-
-
-<button onclick="selectGrade(1)">
-⭐ Darjah 1
-</button>
-
-
-<button onclick="selectGrade(2)">
-⭐ Darjah 2
-</button>
-
-
-<button onclick="selectGrade(3)">
-⭐ Darjah 3
-</button>
-
-
-<button onclick="selectGrade(4)">
-⭐ Darjah 4
-</button>
-
-
-<button onclick="selectGrade(5)">
-⭐ Darjah 5
-</button>
-
-
-<button onclick="selectGrade(6)">
-⭐ Darjah 6
-</button>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-<!-- PILIH KATEGORI -->
-
-
-<section id="categoryMenu" class="screen">
-
-
-<h2>Pilih Kategori</h2>
-
-
-<div id="categoryList">
-
-
-</div>
-
-
-</section>
-
-
-<!-- GAME SCREEN -->
-
-<section id="gameScreen" class="screen">
-
-
-<!-- HUD -->
-
-<div class="game-hud">
-
-
-<div class="player-info">
-
-<div>
-❤️ <span id="life">5</span>
-</div>
-
-
-<div>
-🪙 <span id="coin">0</span>
-</div>
-
-
-<div>
-⭐ <span id="xp">0</span>
-</div>
-
-
-<div>
-🏆 Level <span id="level">1</span>
-</div>
-
-</div>
-
-
-
-<div class="timer-box">
-
-⏱️
-
-<span id="timer">
-15
-</span>
-
-</div>
-
-
-</div>
-
-
-
-
-
-<!-- PROGRESS -->
-
-
-<div class="progress-container">
-
-<div id="progressBar">
-
-</div>
-
-</div>
-
-
-
-
-
-<!-- QUESTION AREA -->
-
-
-<div class="question-box">
-
-
-<h3 id="questionNumber">
-
-Soalan 1 / 100
-
-</h3>
-
-
-<h2 id="questionText">
-
-Apakah jawapan yang betul?
-
-</h2>
-
-
-
-<div id="questionImage">
-
-</div>
-
-
-
-<div class="answer-grid">
-
-
-<button 
-class="answer-btn"
-onclick="checkAnswer('A')"
-id="answerA">
-
-A
-
-</button>
-
-
-
-<button 
-class="answer-btn"
-onclick="checkAnswer('B')"
-id="answerB">
-
-B
-
-</button>
-
-
-
-<button 
-class="answer-btn"
-onclick="checkAnswer('C')"
-id="answerC">
-
-C
-
-</button>
-
-
-
-<button 
-class="answer-btn"
-onclick="checkAnswer('D')"
-id="answerD">
-
-D
-
-</button>
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-<!-- GAME CONTROL -->
-
-
-<div class="game-control">
-
-
-<button onclick="pauseGame()">
-
-⏸️
-
-</button>
-
-
-<button onclick="toggleSound()">
-
-🔊
-
-</button>
-
-
-<button onclick="exitGame()">
-
-🏠
-
-</button>
-
-
-</div>
-
-
-
-</section>
-
-
-
-
-
-<!-- RESULT SCREEN -->
-
-
-<section id="resultScreen" class="screen">
-
-
-<div class="result-box">
-
-
-<h1>
-
-🎉 Tamat!
-
-</h1>
-
-
-<h2>
-Keputusan Permainan
-</h2>
-
-
-
-<div class="result-item">
-
-Betul:
-
-<span id="correctScore">
-0
-</span>
-
-</div>
-
-
-
-<div class="result-item">
-
-Salah:
-
-<span id="wrongScore">
-0
-</span>
-
-</div>
-
-
-
-<div class="result-item">
-
-Coin:
-
-<span id="finalCoin">
-0
-</span>
-
-</div>
-
-
-
-<div class="result-item">
-
-XP:
-
-<span id="finalXP">
-0
-</span>
-
-</div>
-
-
-
-
-<button onclick="restartGame()">
-
-🔄 Main Lagi
-
-</button>
-
-
-
-<button onclick="backHome()">
-
-🏠 Menu Utama
-
-</button>
-
-
-
-</div>
-
-
-</section>
-
-
-<!-- LEARNING SCREEN -->
-
-<section id="learningScreen" class="screen">
-
-<div class="page-header">
-
-<h2>
-📚 Pembelajaran
-</h2>
-
-<button onclick="backHome()">
-🏠
-</button>
-
-</div>
-
-
-<div class="learning-card">
-
-<h3>
-Matematik
-</h3>
-
-<p>
-Latihan mengikut tahap Darjah 1 hingga Darjah 6.
-</p>
-
-
-<div class="learning-grid">
-
-<button>
-🔢 Kenal Nombor
-</button>
-
-
-<button>
-➕ Tambah
-</button>
-
-
-<button>
-➖ Tolak
-</button>
-
-
-<button>
-✖️ Darab
-</button>
-
-
-<button>
-➗ Bahagi
-</button>
-
-
-<button>
-💰 Wang & Masa
-</button>
-
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-<!-- ACHIEVEMENT SCREEN -->
-
-
-<section id="achievementScreen" class="screen">
-
-
-<div class="page-header">
-
-
-<h2>
-🏆 Pencapaian
-</h2>
-
-
-<button onclick="backHome()">
-🏠
-</button>
-
-
-</div>
-
-
-
-
-<div class="achievement-list">
-
-
-<div class="badge locked">
-
-🔒
-
-<h3>
-Pelajar Baru
-</h3>
-
-<p>
-Jawab 10 soalan
-</p>
-
-</div>
-
-
-
-<div class="badge locked">
-
-🔒
-
-<h3>
-Pejuang Matematik
-</h3>
-
-<p>
-Jawab 100 soalan
-</p>
-
-</div>
-
-
-
-<div class="badge locked">
-
-🔒
-
-<h3>
-Juara Akademi
-</h3>
-
-<p>
-Capai Level 10
-</p>
-
-</div>
-
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-<!-- SETTING SCREEN -->
-
-
-<section id="settingScreen" class="screen">
-
-
-<div class="page-header">
-
-
-<h2>
-⚙️ Tetapan
-</h2>
-
-
-<button onclick="backHome()">
-
-🏠
-
-</button>
-
-
-</div>
-
-
-
-
-<div class="setting-box">
-
-
-<label>
-
-🔊 Bunyi
-
-<input 
-type="checkbox"
-id="soundToggle"
-checked>
-
-</label>
-
-
-
-<label>
-
-🎵 Muzik
-
-<input 
-type="checkbox"
-id="musicToggle"
-checked>
-
-</label>
-
-
-
-
-<label>
-
-🌙 Mod Gelap
-
-<input 
-type="checkbox"
-id="darkToggle">
-
-</label>
-
-
-
-</div>
-
-
-
-</section>
-
-
-
-
-
-
-<!-- PLAYER DATA -->
-
-
-<section id="profileScreen" class="screen">
-
-
-<h2>
-👤 Profil Pemain
-</h2>
-
-
-<div class="profile-card">
-
-
-<h3 id="playerName">
-
-Pemain
-
-</h3>
-
-
-<p>
-Coin:
-<span id="profileCoin">
-0
-</span>
-
-</p>
-
-
-<p>
-XP:
-<span id="profileXP">
-0
-</span>
-
-</p>
-
-
-<p>
-Level:
-<span id="profileLevel">
-1
-</span>
-
-</p>
-
-
-
-</div>
-
-
-<button onclick="backHome()">
-
-Kembali
-
-</button>
-
-
-</section>
-
-
-<!-- NAME INPUT SCREEN -->
-
-<section id="nameScreen" class="screen">
-
-
-<div class="name-box">
-
-
-<h2>
-👋 Selamat Datang!
-</h2>
-
-
-<p>
-Masukkan nama pemain
-</p>
-
-
-<input 
-type="text"
-id="playerInput"
-placeholder="Nama anda">
-
-
-<button onclick="savePlayerName()">
-
-Mula Bermain 🚀
-
-</button>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-<!-- DUEL SCREEN -->
-
-
-<section id="duelScreen" class="screen">
-
-
-<div class="battle-header">
-
-
-<h2>
-⚔️ DUEL BATTLE
-</h2>
-
-
-</div>
-
-
-
-<div class="battle-player">
-
-
-<div class="player-card">
-
-
-<h3 id="player1Name">
-Anda
-</h3>
-
-
-<div class="health">
-
-❤️❤️❤️❤️❤️
-
-</div>
-
-
-</div>
-
-
-
-
-<div class="vs">
-
-VS
-
-</div>
-
-
-
-
-<div class="player-card">
-
-
-<h3>
-AI
-</h3>
-
-
-<div class="health">
-
-❤️❤️❤️❤️❤️
-
-</div>
-
-
-</div>
-
-
-</div>
-
-
-
-
-<div class="duel-question">
-
-
-<h2 id="duelQuestion">
-
-Soalan Duel
-
-</h2>
-
-
-<div id="duelAnswers">
-
-
-</div>
-
-
-</div>
-
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<!-- SQUAD SCREEN -->
-
-
-<section id="squadScreen" class="screen">
-
-
-<div class="battle-header">
-
-
-<h2>
-
-🔥 SQUAD BATTLE
-
-</h2>
-
-
-<p>
-
-Bekerjasama untuk kumpul markah tertinggi!
-
-</p>
-
-
-</div>
-
-
-
-<div class="team-area">
-
-
-<div class="team-member">
-
-👦 Pemain 1
-
-</div>
-
-
-<div class="team-member">
-
-👧 Pemain 2
-
-</div>
-
-
-<div class="team-member">
-
-🧑 Pemain 3
-
-</div>
-
-
-<div class="team-member">
-
-🤖 AI
-
-</div>
-
-
-</div>
-
-
-
-
-<button onclick="startSquadGame()">
-
-Mula Pertempuran
-
-</button>
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<!-- PAUSE POPUP -->
-
-
-<div id="pausePopup" class="popup">
-
-
-<div class="popup-box">
-
-
-<h2>
-
-⏸️ Permainan Dijeda
-
-</h2>
-
-
-
-<button onclick="resumeGame()">
-
-Sambung
-
-</button>
-
-
-
-<button onclick="exitGame()">
-
-Keluar
-
-</button>
-
-
-
-</div>
-
-
-</div>
-
-
-<!-- NOTIFICATION POPUP -->
-
-<div id="notification" class="notification">
-
-<span id="notificationText">
-
-</span>
-
-</div>
-
-
-
-
-
-<!-- AUDIO -->
-
-<audio id="correctSound">
-
-<source src="audio/correct.mp3">
-
-</audio>
-
-
-<audio id="wrongSound">
-
-<source src="audio/wrong.mp3">
-
-</audio>
-
-
-<audio id="clickSound">
-
-<source src="audio/click.mp3">
-
-</audio>
-
-
-<audio id="backgroundMusic" loop>
-
-<source src="audio/background.mp3">
-
-</audio>
-
-
-
-
-
-</div>
-<!-- END APP -->
-
-
-
-
-<!-- JAVASCRIPT FILES -->
-
-
-<script type="module" src="js/storage.js"></script>
-
-<script type="module" src="js/audio.js"></script>
-
-<script type="module" src="js/score.js"></script>
-
-<script type="module" src="js/timer.js"></script>
-
-<script type="module" src="js/game.js"></script>
-
-<script type="module" src="js/menu.js"></script>
-
-<script type="module" src="js/app.js"></script>
-
-
-
-</body>
-
-</html>
+<!doctype html>
+<html lang="ms"><head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260717-05-8209e4e"}');</script><script src="/_sdk/f432b76fb310b513.telemetry_sdk.js" integrity="sha512-9FJQ55EKmmqhyyik8BhrMVfm0+iYYfb8uOlRsjtkxJMEI97qOVEI4PnHohDjQAtvAep0IOEpdQ64eki0sz62ug=="></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jom Pandai Academy Battle</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <style>
+        * { font-family: 'Fira Sans', sans-serif; }
+        .screen { display: none; width: 100%; min-height: calc(100 * min(var(--vh, 1vh), 1vh)); }
+        .screen.active { display: flex; flex-direction: column; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 15px rgba(255,200,0,0.6); } 50% { box-shadow: 0 0 30px rgba(255,200,0,1); } }
+        @keyframes shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+        @keyframes attack { 0% { transform: scale(1); } 50% { transform: scale(1.3) rotate(-5deg); } 100% { transform: scale(1); } }
+        @keyframes confetti { 0% { transform: translateY(0) rotate(0); opacity:1; } 100% { transform: translateY(-80px) rotate(720deg); opacity:0; } }
+        .glow-btn { animation: pulse-glow 2s infinite; }
+        .shake { animation: shake 0.4s; }
+        .attack-anim { animation: attack 0.5s; }
+        .confetti-particle { animation: confetti 1s ease-out forwards; }
+        .hero-entrance { animation: introZoom 1.7s cubic-bezier(.2,.8,.2,1) both; }
+        .hero-ready { filter: drop-shadow(0 0 18px rgba(255,210,45,.95)); animation: readyBreath 0.9s ease-in-out 1.7s infinite alternate; }
+        .hero-weapon { animation: weaponSpark .55s ease-in-out 1.45s both; filter: drop-shadow(0 0 10px #67e8f9); }
+        .motion-lines { height: 5rem; opacity: 0; background: repeating-linear-gradient(180deg, transparent 0 10px, rgba(255,255,255,.75) 11px 14px, transparent 15px 23px); animation: speedLines .65s ease-out .1s both; }
+        .hero-dust { width: 12rem; height: 2rem; border-radius: 50%; background: radial-gradient(ellipse, rgba(255,220,120,.75), transparent 68%); animation: dustBurst .75s ease-out 1.35s both; }
+        .battle-burst { background: radial-gradient(circle at 50% 55%, rgba(255,205,60,.3), transparent 22%), repeating-conic-gradient(from 0deg at 50% 55%, rgba(255,255,255,.16) 0deg 3deg, transparent 3deg 18deg); animation: burstSpin 2s linear infinite; }
+        @keyframes introZoom { 0% { transform: translateX(-120%) scale(.65) rotate(-8deg); opacity: 0; } 55% { transform: translateX(12%) scale(1.08) rotate(3deg); opacity: 1; } 75% { transform: translateX(-4%) scale(.98) rotate(-2deg); } 100% { transform: translateX(0) scale(1) rotate(0); } }
+        @keyframes readyBreath { from { transform: translateY(0) scale(1); } to { transform: translateY(-5px) scale(1.04); } }
+        @keyframes weaponSpark { 0% { transform: scale(.2) rotate(-35deg); opacity: 0; } 70% { transform: scale(1.3) rotate(12deg); opacity: 1; } 100% { transform: scale(1) rotate(0); opacity: 1; } }
+        @keyframes speedLines { 0% { transform: translateX(-45%); opacity: 0; } 35% { opacity: .9; } 100% { transform: translateX(45%); opacity: 0; } }
+        @keyframes dustBurst { 0% { transform: scale(.2); opacity: 0; } 45% { opacity: 1; } 100% { transform: scale(1.5); opacity: 0; } }
+        @keyframes burstSpin { to { transform: rotate(360deg) scale(1.1); } }
+        .game-card { border-radius: 1.2rem; backdrop-filter: blur(8px); }
+        .hud-item { background: rgba(0,0,0,0.4); border-radius: 1rem; padding: 0.3rem 0.7rem; font-size: 0.8rem; color: #fff; }
+    </style>
+  <script src="/_sdk/e3937a0574eb2d69.data_sdk.js" type="text/javascript" integrity="sha512-xbp/ACqEQy1aDxYMtXTrR3y5MUbzxuggRR/9sD48Gl4VhLMMCiAHsxMaFV6DTdeBpR6ymF+t2zhPKYkWM3+Jfw=="></script>
+  <script src="/_sdk/9432170dbd2ae0df.resizing_sdk.js" type="text/javascript" integrity="sha512-FeT+58sb1f9ejWPWFjCbJvTT+SDwGV+ngrHUnlO7TWEOoqwOLj6p256kO3vOL7DIWl1cIgrobiof8v2bOigwPg=="></script>
+ </head>
+ <body data-template-id="__page-root" class="w-full overflow-x-hidden" style="background: linear-gradient(rgb(26, 5, 51), rgb(15, 27, 77));"><!-- MAIN MENU -->
+  <div id="screen-menu" class="screen active items-center justify-center p-6 text-center relative overflow-hidden">
+   <div class="absolute inset-0 bg-gradient-to-b from-purple-900 via-indigo-800 to-blue-900 -z-10"></div>
+   <div class="absolute inset-0 opacity-20 -z-5" style="background: radial-gradient(circle at 30% 20%, #ffd700 0%, transparent 40%), radial-gradient(circle at 70% 80%, #ff69b4 0%, transparent 40%);"></div>
+   <div class="text-6xl mb-2">
+    ⚔️🧠
+   </div>
+   <h1 data-template-id="main-title" class="canva-text text-3xl font-black text-yellow-300 drop-shadow-lg mb-1" style="text-shadow: rgba(255, 200, 0, 0.8) 0px 0px 20px; color: rgb(253, 224, 71); font-weight: 900; font-style: normal; font-size: 32px;">JOM PANDAI ACADEMY BATTLE</h1>
+   <p data-template-id="main-tagline" class="canva-text text-lg text-pink-200 mb-6" style="color: rgb(249, 168, 212); font-weight: 500; font-style: normal; font-size: 16px;">Belajar. Bermain. Menang!</p>
+   <p id="menu-greeting" class="text-sm text-yellow-100 mb-3 min-h-5"></p>
+   <div class="grid grid-cols-2 gap-3 w-full max-w-sm"><button onclick="beginMode('solo')" class="game-card bg-gradient-to-br from-yellow-400 to-orange-500 p-4 text-white font-bold text-sm shadow-lg glow-btn">⚡ Solo</button> <button onclick="beginMode('duel')" class="game-card bg-gradient-to-br from-red-400 to-pink-500 p-4 text-white font-bold text-sm shadow-lg">🆚 Duel</button> <button onclick="beginMode('squad')" class="game-card bg-gradient-to-br from-blue-400 to-purple-500 p-4 text-white font-bold text-sm shadow-lg">🛡️ Battle Squad</button> <button onclick="goTo('pembelajaran')" class="game-card bg-gradient-to-br from-green-400 to-teal-500 p-4 text-white font-bold text-sm shadow-lg">📚 Pembelajaran</button> <button onclick="goTo('pencapaian')" class="game-card bg-gradient-to-br from-amber-400 to-yellow-600 p-4 text-white font-bold text-sm shadow-lg">🏆 Pencapaian</button> <button onclick="goTo('tetapan')" class="game-card bg-gradient-to-br from-gray-500 to-gray-700 p-4 text-white font-bold text-sm shadow-lg">⚙️ Tetapan</button>
+   </div>
+   <p class="text-xs text-indigo-300 mt-4 opacity-70">v1.0 • Untuk Darjah 1-6</p>
+  </div><!-- NAME ENTRY -->
+  <div id="screen-name-entry" class="screen items-center justify-center p-6 text-center relative overflow-hidden">
+   <div class="absolute inset-0 bg-gradient-to-b from-pink-900 via-purple-800 to-indigo-900 -z-10"></div>
+   <div class="text-6xl mb-3">
+    🌟🧠
+   </div>
+   <h2 data-template-id="name-title" class="canva-text text-3xl font-black text-yellow-300 mb-2" style="color: rgb(253, 224, 71); font-weight: 900; font-style: normal; font-size: 28px;">Siapa Nama Kamu?</h2>
+   <p data-template-id="name-helper" class="canva-text text-pink-100 mb-5" style="color: rgb(252, 231, 243); font-weight: 500; font-style: normal; font-size: 16px;">Masukkan nama kamu untuk mula bermain!</p>
+   <form id="name-form" class="w-full max-w-sm">
+    <label data-template-id="name-label" class="canva-text sr-only" for="player-name-input" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">Nama Pemain</label> <input id="player-name-input" type="text" maxlength="24" autocomplete="name" class="w-full rounded-2xl p-4 text-center text-lg font-bold text-gray-800 outline-none focus:ring-4 focus:ring-yellow-300" placeholder="Taip nama kamu…">
+    <p id="name-prompt" class="min-h-6 text-sm text-yellow-200 font-bold mt-2" aria-live="polite"></p><button data-template-id="name-submit" type="submit" class="game-card w-full bg-gradient-to-r from-yellow-400 to-orange-500 p-4 text-white font-black shadow-lg mt-2" style="color: rgb(255, 255, 255); font-weight: 900; font-style: normal; font-size: 16px;">Mula Main ⚡</button>
+   </form>
+  </div><!-- BATTLE READY INTRO -->
+  <div id="screen-battle-intro" class="screen items-center justify-center p-6 text-center relative overflow-hidden">
+   <div class="absolute inset-0 bg-gradient-to-b from-orange-900 via-rose-800 to-purple-950 -z-10"></div>
+   <div class="battle-burst absolute inset-0 pointer-events-none" aria-hidden="true"></div>
+   <p data-template-id="battle-intro-kicker" class="canva-text text-yellow-200 font-black tracking-widest uppercase mb-3" style="color: rgb(254, 240, 138); font-weight: 900; font-style: normal; font-size: 16px;">Bersedia Untuk Bertempur!</p>
+   <div class="hero-entrance relative w-full max-w-sm h-52 flex items-center justify-center" aria-hidden="true">
+    <div class="motion-lines absolute left-0 right-0 top-1/2"></div>
+    <div class="hero-dust absolute bottom-4"></div>
+    <div class="hero-ready text-8xl relative">
+     🦸‍♂️<span class="hero-weapon absolute -right-5 top-5 text-5xl">⚡</span>
+    </div>
+   </div>
+   <h2 data-template-id="battle-intro-title" class="canva-text text-3xl font-black text-yellow-300 mb-2" style="color: rgb(253, 224, 71); font-weight: 900; font-style: normal; font-size: 30px;">JOM BERJUANG!</h2>
+   <p data-template-id="battle-intro-helper" class="canva-text text-orange-100" style="color: rgb(255, 237, 213); font-weight: 500; font-style: normal; font-size: 16px;">Kuasa ilmu, bersedia!</p>
+  </div><!-- MODE SELECT (Subject) -->
+  <div id="screen-mode-select" class="screen items-center p-6"><button onclick="goTo('menu')" class="self-start text-white mb-4 flex items-center gap-1"><i data-lucide="arrow-left" style="width:20px;height:20px;"></i> Menu</button>
+   <h2 data-template-id="subject-title" class="canva-text text-2xl font-black text-white mb-2" style="color: rgb(255, 255, 255); font-weight: 900; font-style: normal; font-size: 24px;">Pilih Subjek</h2>
+   <div class="grid grid-cols-2 gap-3 w-full max-w-sm"><button onclick="selectSubject('matematik')" class="subject-card game-card bg-gradient-to-br from-blue-500 to-cyan-400 p-5 text-white font-bold shadow-lg">Soalan Matematik</button> <button onclick="selectSubject('bahasa_melayu')" class="subject-card game-card bg-gradient-to-br from-green-500 to-emerald-400 p-5 text-white font-bold shadow-lg">Soalan Bahasa Melayu</button> <button onclick="selectSubject('english')" class="subject-card game-card bg-gradient-to-br from-purple-500 to-violet-400 p-5 text-white font-bold shadow-lg">Soalan Bahasa Inggeris</button> <button onclick="selectSubject('sains')" class="subject-card game-card bg-gradient-to-br from-orange-500 to-red-400 p-5 text-white font-bold shadow-lg">Soalan Sains</button>
+   </div>
+  </div><!-- GRADE SELECT -->
+  <div id="screen-grade-select" class="screen items-center p-6"><button onclick="goTo('mode-select')" class="self-start text-white mb-4 flex items-center gap-1"><i data-lucide="arrow-left" style="width:20px;height:20px;"></i> Kembali</button>
+   <h2 data-template-id="grade-title" class="canva-text text-2xl font-black text-white mb-4" style="color: rgb(255, 255, 255); font-weight: 900; font-style: normal; font-size: 24px;">Pilih Darjah</h2>
+   <div class="grid grid-cols-2 gap-3 w-full max-w-sm" id="grade-buttons"></div>
+  </div><!-- DARJAH 1 CATEGORY SELECT -->
+  <div id="screen-category-select" class="screen items-center p-6 text-center relative overflow-hidden">
+   <div class="absolute inset-0 bg-gradient-to-b from-cyan-900 via-blue-800 to-indigo-900 -z-10"></div><button onclick="goTo('grade-select')" class="self-start text-white mb-4 flex items-center gap-1"><i data-lucide="arrow-left" style="width:20px;height:20px;"></i> Kembali</button>
+   <h2 data-template-id="category-title" class="canva-text text-2xl font-black text-yellow-300 mb-2" style="color: rgb(253, 224, 71); font-weight: 900; font-style: normal; font-size: 24px;">Pilih Kategori Darjah 1</h2>
+   <p data-template-id="category-helper" class="canva-text text-cyan-100 mb-5" style="color: rgb(207, 250, 254); font-weight: 500; font-style: normal; font-size: 16px;">Pilih satu kategori untuk mula belajar!</p>
+   <div id="category-buttons" class="grid grid-cols-2 gap-3 w-full max-w-sm"></div>
+   <div class="w-full max-w-sm mt-6 rounded-2xl bg-black/25 p-4">
+    <p id="bonus-progress-1" class="text-yellow-200 font-bold text-sm mb-2">Coin: 0/4000</p>
+    <p class="text-cyan-100 text-sm mb-3">🔒 Kategori Bonus — buka dengan 4000 Coin</p>
+    <div id="bonus-category-buttons-1" class="grid grid-cols-2 gap-3"></div>
+   </div>
+  </div><!-- DARJAH 2 CATEGORY SELECT -->
+  <div id="screen-category-select-2" class="screen items-center p-6 text-center relative overflow-hidden" data-template-id="category-screen-2" style="background: linear-gradient(rgb(88, 28, 135), rgb(49, 46, 129));">
+   <div class="absolute inset-0 bg-gradient-to-b from-fuchsia-900 via-purple-800 to-indigo-900 -z-10"></div><button onclick="goTo('grade-select')" class="self-start text-white mb-4 flex items-center gap-1"><i data-lucide="arrow-left" style="width:20px;height:20px;"></i> Kembali</button>
+   <h2 class="text-2xl font-black text-yellow-300 mb-2">Pilih Kategori Darjah 2</h2>
+   <p class="text-fuchsia-100 mb-5">Pilih satu kategori untuk mula belajar!</p>
+   <div id="category-buttons-2" class="grid grid-cols-2 gap-3 w-full max-w-sm"></div>
+   <div class="w-full max-w-sm mt-6 rounded-2xl bg-black/25 p-4">
+    <p id="bonus-progress-2" class="text-yellow-200 font-bold text-sm mb-2">Coin: 0/4000</p>
+    <p class="text-fuchsia-100 text-sm mb-3">🔒 Kategori Bonus — buka dengan 4000 Coin</p>
+    <div id="bonus-category-buttons-2" class="grid grid-cols-2 gap-3"></div>
+   </div>
+  </div><!-- DARJAH 3 CATEGORY SELECT -->
+  <div id="screen-category-select-3" class="screen items-center p-6 text-center relative overflow-hidden" data-template-id="category-screen-3" style="background: linear-gradient(rgb(124, 45, 18), rgb(159, 18, 57));">
+   <div class="absolute inset-0 bg-gradient-to-b from-amber-900 via-orange-800 to-rose-900 -z-10"></div><button onclick="goTo('grade-select')" class="self-start text-white mb-4 flex items-center gap-1"><i data-lucide="arrow-left" style="width:20px;height:20px;"></i> Kembali</button>
+   <h2 data-template-id="category-title-3" class="canva-text text-2xl font-black text-yellow-300 mb-2" style="color: rgb(253, 224, 71); font-weight: 900; font-style: normal; font-size: 24px;">Pilih Kategori Darjah 3</h2>
+   <p data-template-id="category-helper-3" class="canva-text text-orange-100 mb-5" style="color: rgb(255, 237, 213); font-weight: 500; font-style: normal; font-size: 16px;">Pilih satu kategori untuk mula belajar!</p>
+   <div id="category-buttons-3" class="grid grid-cols-2 gap-3 w-full max-w-sm"></div>
+   <div class="w-full max-w-sm mt-6 rounded-2xl bg-black/25 p-4">
+    <p id="bonus-progress-3" class="text-yellow-200 font-bold text-sm mb-2">Coin: 0/4000</p>
+    <p class="text-orange-100 text-sm mb-3">🔒 Kategori Bonus — buka dengan 4000 Coin</p>
+    <div id="bonus-category-buttons-3" class="grid grid-cols-2 gap-3"></div>
+   </div>
+  </div><!-- SOLO BATTLE -->
+  <div id="screen-solo-battle" class="screen items-center p-4 relative">
+   <p id="solo-player-greeting" class="text-center text-yellow-200 font-bold text-sm mb-2"></p>
+   <div class="w-full flex justify-between items-center mb-3 flex-wrap gap-1">
+    <div class="hud-item">
+     ❤️ <span id="hud-lives">3</span>
+    </div>
+    <div class="hud-item">
+     🪙 <span id="hud-coins">0</span>
+    </div>
+    <div class="hud-item">
+     ⭐ <span id="hud-score">0</span>
+    </div>
+    <div class="hud-item">
+     🏆 Lv<span id="hud-level">1</span>
+    </div>
+    <div class="hud-item">
+     ⏱️ <span id="hud-timer">15</span>
+    </div>
+   </div>
+   <div id="enemy-display" class="text-center mb-3">
+    <div id="enemy-sprite" class="text-6xl">
+     🤖
+    </div>
+    <div id="enemy-name" class="text-white font-bold text-sm mt-1">
+     Robot Genius
+    </div>
+    <div class="w-40 h-3 bg-gray-700 rounded-full mx-auto mt-1">
+     <div id="enemy-hp" class="h-full bg-red-500 rounded-full transition-all" style="width:100%"></div>
+    </div>
+   </div>
+   <div id="feedback-text" class="text-2xl font-black text-center h-8 mb-2"></div>
+   <div id="solo-question-progress" class="text-center text-yellow-200 font-black text-lg mb-2" aria-live="polite">
+    1/100
+   </div>
+   <div id="question-box" class="game-card bg-white/95 p-4 w-full max-w-sm text-center mb-3">
+    <p id="question-text" class="font-bold text-gray-800 text-lg mb-3">Soalan akan muncul di sini</p>
+    <div id="options-grid" class="grid grid-cols-2 gap-2"></div>
+   </div>
+   <div class="w-full max-w-sm bg-gray-700 rounded-full h-2">
+    <div id="progress-bar" class="h-full bg-gradient-to-r from-green-400 to-emerald-500 rounded-full transition-all" style="width:0%"></div>
+   </div><button onclick="goTo('menu')" class="mt-3 text-xs text-gray-400 underline">Keluar</button>
+  </div><!-- DUEL BATTLE -->
+  <div id="screen-duel" class="screen items-center justify-center p-6 text-center">
+   <p id="duel-player-greeting" class="text-yellow-100 font-bold text-sm mb-2"></p>
+   <h2 class="text-2xl font-black text-yellow-300 mb-4">⚔️ DUEL MODE</h2>
+   <div class="flex items-center gap-4 mb-4">
+    <div class="text-center">
+     <div class="text-5xl">
+      🦸
+     </div>
+     <p class="text-white font-bold text-sm">Hero</p>
+    </div><span class="text-3xl font-black text-red-400">VS</span>
+    <div class="text-center">
+     <div class="text-5xl" id="duel-enemy-sprite">
+      🤖
+     </div>
+     <p class="text-white font-bold text-sm" id="duel-enemy-name">Robot Genius</p>
+    </div>
+   </div>
+   <div class="text-white mb-2">
+    Pusingan: <span id="duel-round">1</span>/3 | Skor: <span id="duel-hero-score">0</span> - <span id="duel-enemy-score">0</span>
+   </div>
+   <div id="duel-question-progress" class="text-center text-yellow-200 font-black text-lg mb-2" aria-live="polite">
+    1/3
+   </div>
+   <div id="duel-question-box" class="game-card bg-white/95 p-4 w-full max-w-sm text-center mb-3">
+    <p id="duel-question-text" class="font-bold text-gray-800 mb-3">Soalan Duel</p>
+    <div id="duel-options" class="grid grid-cols-2 gap-2"></div>
+   </div><button onclick="goTo('menu')" class="text-xs text-gray-400 underline mt-2">Keluar</button>
+  </div><!-- BATTLE SQUAD -->
+  <div id="screen-squad" class="screen items-center p-6"><button onclick="goTo('menu')" class="self-start text-white mb-4 flex items-center gap-1"><i data-lucide="arrow-left" style="width:20px;height:20px;"></i> Menu</button>
+   <p id="squad-player-greeting" class="text-yellow-100 font-bold text-sm mb-2"></p>
+   <h2 class="text-2xl font-black text-cyan-300 mb-3">🛡️ BATTLE SQUAD</h2>
+   <p class="text-white text-sm mb-3">Pilih pasukan anda:</p>
+   <div class="grid grid-cols-2 gap-3 w-full max-w-sm mb-4"><button onclick="selectSquadMember('kucing')" class="game-card bg-gradient-to-br from-pink-400 to-rose-500 p-3 text-white font-bold text-sm">🐱 Kucing Matematik</button> <button onclick="selectSquadMember('robot')" class="game-card bg-gradient-to-br from-gray-400 to-blue-500 p-3 text-white font-bold text-sm">🤖 Robot Pintar</button> <button onclick="selectSquadMember('wizard')" class="game-card bg-gradient-to-br from-purple-400 to-indigo-500 p-3 text-white font-bold text-sm">🧙 Wizard Ilmu</button> <button onclick="selectSquadMember('angkasawan')" class="game-card bg-gradient-to-br from-teal-400 to-cyan-500 p-3 text-white font-bold text-sm">🚀 Angkasawan Bijak</button>
+   </div>
+   <div id="squad-battle-area" class="hidden w-full max-w-sm text-center">
+    <div class="text-4xl mb-2">
+     👾
+    </div>
+    <p class="text-white font-bold">BOSS: Naga Kejahilan</p>
+    <div class="w-full h-4 bg-gray-700 rounded-full my-2">
+     <div id="boss-hp" class="h-full bg-red-500 rounded-full transition-all" style="width:100%"></div>
+    </div>
+    <div class="text-white text-sm mb-2">
+     Kuasa Pasukan: <span id="squad-power">0</span>%
+    </div>
+    <div id="squad-question-progress" class="text-center text-yellow-200 font-black text-lg mb-2" aria-live="polite">
+     1/100
+    </div>
+    <div id="squad-question-box" class="game-card bg-white/95 p-4 mb-3">
+     <p id="squad-question-text" class="font-bold text-gray-800 mb-3">Soalan Boss</p>
+     <div id="squad-options" class="grid grid-cols-2 gap-2"></div>
+    </div>
+   </div>
+  </div><!-- PEMBELAJARAN -->
+  <div id="screen-pembelajaran" class="screen items-center p-6"><button onclick="goTo('menu')" class="self-start text-white mb-4 flex items-center gap-1"><i data-lucide="arrow-left" style="width:20px;height:20px;"></i> Menu</button>
+   <h2 data-template-id="learn-title" class="canva-text text-2xl font-black text-green-300 mb-4" style="color: rgb(134, 239, 172); font-weight: 900; font-style: normal; font-size: 24px;">📚 Pembelajaran</h2>
+   <div class="space-y-3 w-full max-w-sm">
+    <div class="game-card bg-white/10 p-4 text-white">
+     <span class="text-xl mr-2">⚡</span><strong>Solo:</strong> Lawan musuh kartun dengan kuasa ilmu!
+    </div>
+    <div class="game-card bg-white/10 p-4 text-white">
+     <span class="text-xl mr-2">🆚</span><strong>Duel:</strong> Lawan kawan atau komputer 1-lawan-1!
+    </div>
+    <div class="game-card bg-white/10 p-4 text-white">
+     <span class="text-xl mr-2">🛡️</span><strong>Squad:</strong> Bina pasukan untuk kalahkan Boss!
+    </div>
+    <div class="game-card bg-white/10 p-4 text-white">
+     <span class="text-xl mr-2">📚</span><strong>Subjek:</strong> Matematik, BM, English, Sains
+    </div>
+    <div class="game-card bg-white/10 p-4 text-white">
+     <span class="text-xl mr-2">🎯</span><strong>Gred:</strong> Darjah 1 hingga Darjah 6
+    </div>
+   </div>
+  </div><!-- PENCAPAIAN -->
+  <div id="screen-pencapaian" class="screen items-center p-6"><button onclick="goTo('menu')" class="self-start text-white mb-4 flex items-center gap-1"><i data-lucide="arrow-left" style="width:20px;height:20px;"></i> Menu</button>
+   <h2 data-template-id="achieve-title" class="canva-text text-2xl font-black text-yellow-300 mb-4" style="color: rgb(253, 224, 71); font-weight: 900; font-style: normal; font-size: 24px;">🏆 Pencapaian</h2>
+   <div class="grid grid-cols-3 gap-3 w-full max-w-sm" id="badges-grid">
+    <div class="game-card bg-white/10 p-3 text-center">
+     <div class="text-3xl">
+      🥇
+     </div>
+     <p class="text-white text-xs mt-1">Pertama Menang</p>
+    </div>
+    <div class="game-card bg-white/10 p-3 text-center">
+     <div class="text-3xl">
+      🔥
+     </div>
+     <p class="text-white text-xs mt-1">5 Betul Berturut</p>
+    </div>
+    <div class="game-card bg-white/10 p-3 text-center">
+     <div class="text-3xl">
+      ⭐
+     </div>
+     <p class="text-white text-xs mt-1">100 Markah</p>
+    </div>
+    <div class="game-card bg-white/10 p-3 text-center">
+     <div class="text-3xl">
+      🐱
+     </div>
+     <p class="text-white text-xs mt-1">Kucing Unlocked</p>
+    </div>
+    <div class="game-card bg-white/10 p-3 text-center opacity-40">
+     <div class="text-3xl">
+      🔒
+     </div>
+     <p class="text-white text-xs mt-1">???</p>
+    </div>
+    <div class="game-card bg-white/10 p-3 text-center opacity-40">
+     <div class="text-3xl">
+      🔒
+     </div>
+     <p class="text-white text-xs mt-1">???</p>
+    </div>
+   </div>
+  </div><!-- TETAPAN -->
+  <div id="screen-tetapan" class="screen items-center p-6"><button onclick="goTo('menu')" class="self-start text-white mb-4 flex items-center gap-1"><i data-lucide="arrow-left" style="width:20px;height:20px;"></i> Menu</button>
+   <h2 data-template-id="settings-title" class="canva-text text-2xl font-black text-gray-200 mb-4" style="color: rgb(229, 231, 235); font-weight: 900; font-style: normal; font-size: 24px;">⚙️ Tetapan</h2>
+   <div class="space-y-3 w-full max-w-sm"><label class="flex items-center justify-between game-card bg-white/10 p-4 text-white"><span>🔊 Bunyi</span><input type="checkbox" checked="" class="w-5 h-5"></label> <label class="flex items-center justify-between game-card bg-white/10 p-4 text-white"><span>🎵 Muzik</span><input type="checkbox" checked="" class="w-5 h-5"></label> <label class="flex items-center justify-between game-card bg-white/10 p-4 text-white"><span>📳 Getaran</span><input type="checkbox" class="w-5 h-5"></label> <label class="flex items-center justify-between game-card bg-white/10 p-4 text-white"><span>🌐 Bahasa</span><select class="bg-gray-700 text-white rounded px-2 py-1"><option>Bahasa Melayu</option><option>English</option></select></label>
+   </div>
+  </div><!-- RESULT SCREENS -->
+  <div id="screen-victory" class="screen items-center justify-center p-6 text-center">
+   <div class="text-6xl mb-3">
+    🎉🏆🎉
+   </div>
+   <p id="victory-player-greeting" class="text-yellow-100 font-bold text-sm mb-2"></p>
+   <h2 data-template-id="victory-text" class="canva-text text-4xl font-black text-yellow-300 mb-2" style="color: rgb(253, 224, 71); font-weight: 900; font-style: normal; font-size: 24px;">MENANG!</h2>
+   <p class="text-white text-lg mb-4">Tahniah! Kamu memang pandai!</p>
+   <div class="flex gap-3"><button onclick="goTo('menu')" class="game-card bg-gradient-to-r from-blue-500 to-purple-500 px-6 py-3 text-white font-bold">Menu</button> <button onclick="playAgain()" class="game-card bg-gradient-to-r from-green-500 to-emerald-500 px-6 py-3 text-white font-bold">Main Lagi</button>
+   </div>
+  </div>
+  <div id="screen-defeat" class="screen items-center justify-center p-6 text-center">
+   <div class="text-6xl mb-3">
+    😢💪
+   </div>
+   <p id="defeat-player-greeting" class="text-yellow-100 font-bold text-sm mb-2"></p>
+   <h2 data-template-id="defeat-text" class="canva-text text-4xl font-black text-red-400 mb-2" style="color: rgb(248, 113, 113); font-weight: 900; font-style: normal; font-size: 24px;">KALAH!</h2>
+   <p class="text-white text-lg mb-4">Jangan putus asa! Cuba lagi!</p>
+   <div class="flex gap-3"><button onclick="goTo('menu')" class="game-card bg-gradient-to-r from-blue-500 to-purple-500 px-6 py-3 text-white font-bold">Menu</button> <button onclick="playAgain()" class="game-card bg-gradient-to-r from-orange-500 to-red-500 px-6 py-3 text-white font-bold">Cuba Lagi</button>
+   </div>
+  </div>
+  <div id="screen-draw" class="screen items-center justify-center p-6 text-center">
+   <div class="text-6xl mb-3">
+    🤝⚡
+   </div>
+   <p id="draw-player-greeting" class="text-yellow-100 font-bold text-sm mb-2"></p>
+   <h2 class="text-4xl font-black text-cyan-300 mb-2">SERI!</h2>
+   <p class="text-white text-lg mb-4">Hampir menang! Satu lagi pusingan?</p>
+   <div class="flex gap-3"><button onclick="goTo('menu')" class="game-card bg-gradient-to-r from-blue-500 to-purple-500 px-6 py-3 text-white font-bold">Menu</button> <button onclick="playAgain()" class="game-card bg-gradient-to-r from-cyan-500 to-blue-500 px-6 py-3 text-white font-bold">Main Lagi</button>
+   </div>
+  </div>
+  <div id="screen-celebration" class="screen items-center justify-center p-6 text-center">
+   <div class="text-6xl mb-3">
+    🌟👑🌟
+   </div>
+   <p id="celebration-player-greeting" class="text-yellow-100 font-bold text-sm mb-2"></p>
+   <h2 class="text-3xl font-black text-yellow-200 mb-2">CHAMPION!</h2>
+   <p class="text-white text-lg mb-4">Kamu juara Jom Pandai Academy!</p><button onclick="goTo('menu')" class="game-card bg-gradient-to-r from-yellow-400 to-amber-500 px-8 py-3 text-white font-bold glow-btn">Kembali ke Menu</button>
+  </div>
+  <script src="/_sdk/b7bbbe551ba4f8f5.editing_sdk.js" integrity="sha512-h06pMz6KcVo4Wjvoggb4sS5DZpb55bTriAzBmA0YwbkBA3z2ZXl8CBEbCWT+/fAsm0SwDejJ7jJHOZsLZKqPoQ=="></script>
+  <script>
+// === QUESTION BANK STRUCTURE (placeholder) ===
+const questionBank = {
+    matematik: { 1: [], 2: [], 3: [], 4: [], 5: [], 6: [] },
+    bahasa_melayu: { 1: [], 2: [], 3: [], 4: [], 5: [], 6: [] },
+    english: { 1: [], 2: [], 3: [], 4: [], 5: [], 6: [] },
+    sains: { 1: [], 2: [], 3: [], 4: [], 5: [], 6: [] }
+};
+
+// Sample questions for demo
+const sampleQuestions = [const sampleQuestions = [
+    {q: "Apakah nombor selepas 1?", options: ["2", "3", "0", "4"], answer: 0},
+    {q: "Apakah nombor selepas 2?", options: ["1", "4", "3", "5"], answer: 2},
+    {q: "Apakah nombor selepas 3?", options: ["2", "4", "5", "6"], answer: 1},
+    {q: "Apakah nombor selepas 4?", options: ["3", "6", "5", "7"], answer: 2},
+    {q: "Apakah nombor selepas 5?", options: ["4", "7", "6", "8"], answer: 2},
+    {q: "Apakah nombor selepas 6?", options: ["5", "8", "7", "9"], answer: 2},
+    {q: "Apakah nombor selepas 7?", options: ["6", "9", "8", "10"], answer: 2},
+    {q: "Apakah nombor selepas 8?", options: ["7", "10", "9", "11"], answer: 2},
+    {q: "Apakah nombor selepas 9?", options: ["8", "11", "10", "12"], answer: 2},
+    {q: "Apakah nombor selepas 10?", options: ["9", "12", "11", "13"], answer: 2},
+    {q: "Sebelum nombor 2 ialah?", options: ["0", "3", "1", "4"], answer: 2},
+    {q: "Sebelum nombor 3 ialah?", options: ["1", "4", "2", "5"], answer: 2},
+    {q: "Sebelum nombor 4 ialah?", options: ["2", "5", "3", "6"], answer: 2},
+    {q: "Sebelum nombor 5 ialah?", options: ["3", "6", "4", "7"], answer: 2},
+    {q: "Sebelum nombor 6 ialah?", options: ["4", "7", "5", "8"], answer: 2},
+    {q: "Sebelum nombor 7 ialah?", options: ["5", "8", "6", "9"], answer: 2},
+    {q: "Sebelum nombor 8 ialah?", options: ["6", "9", "7", "10"], answer: 2},
+    {q: "Sebelum nombor 9 ialah?", options: ["7", "10", "8", "11"], answer: 2},
+    {q: "Sebelum nombor 10 ialah?", options: ["8", "11", "9", "12"], answer: 2},
+    {q: "Berapakah 1 + 1?", options: ["1", "3", "2", "4"], answer: 2},
+    {q: "Berapakah 1 + 2?", options: ["2", "4", "3", "5"], answer: 2},
+    {q: "Berapakah 2 + 2?", options: ["3", "5", "4", "6"], answer: 2},
+    {q: "Berapakah 2 + 3?", options: ["4", "6", "5", "7"], answer: 2},
+    {q: "Berapakah 3 + 3?", options: ["5", "7", "6", "8"], answer: 2},
+    {q: "Berapakah 3 + 4?", options: ["6", "8", "7", "9"], answer: 2},
+    {q: "Berapakah 4 + 4?", options: ["7", "9", "8", "10"], answer: 2},
+    {q: "Berapakah 4 + 5?", options: ["8", "10", "9", "11"], answer: 2},
+    {q: "Berapakah 5 + 5?", options: ["9", "11", "10", "12"], answer: 2},
+    {q: "Berapakah 5 + 1?", options: ["5", "7", "6", "8"], answer: 2},
+    {q: "Mana satu nombor paling besar: 5, 2, 8?", options: ["5", "2", "8", "Tiada"], answer: 2},
+    {q: "Mana satu nombor paling kecil: 3, 1, 9?", options: ["3", "1", "9", "Tiada"], answer: 1},
+    {q: "Tuliskan 'enam' dalam angka.", options: ["4", "5", "6", "7"], answer: 2},
+    {q: "Tuliskan 'sembilan' dalam angka.", options: ["7", "8", "9", "10"], answer: 2},
+    {q: "Berapakah 10 - 1?", options: ["8", "10", "9", "7"], answer: 2},
+    {q: "Berapakah 10 - 2?", options: ["7", "9", "8", "6"], answer: 2},
+    {q: "Berapakah 10 - 3?", options: ["6", "8", "7", "5"], answer: 2},
+    {q: "Berapakah 10 - 4?", options: ["5", "7", "6", "4"], answer: 2},
+    {q: "Berapakah 10 - 5?", options: ["4", "6", "5", "3"], answer: 2},
+    {q: "Berapakah 6 - 1?", options: ["4", "6", "5", "3"], answer: 2},
+    {q: "Berapakah 7 - 2?", options: ["4", "6", "5", "3"], answer: 2},
+    {q: "Berapakah 8 - 3?", options: ["4", "6", "5", "3"], answer: 2},
+    {q: "Berapakah 9 - 4?", options: ["4", "6", "5", "3"], answer: 2},
+    {q: "Berapakah 5 - 5?", options: ["1", "0", "5", "2"], answer: 1},
+    {q: "Susunan nombor menaik: 1, 2, _, 4", options: ["3", "5", "6", "2"], answer: 0},
+    {q: "Susunan nombor menaik: 4, 5, _, 7", options: ["6", "8", "9", "4"], answer: 0},
+    {q: "Susunan nombor menaik: 7, 8, _, 10", options: ["9", "6", "5", "11"], answer: 0},
+    {q: "Nombor antara 1 dan 3 ialah?", options: ["2", "4", "0", "5"], answer: 0},
+    {q: "Nombor antara 4 dan 6 ialah?", options: ["3", "5", "7", "2"], answer: 1},
+    {q: "Nombor antara 7 dan 9 ialah?", options: ["6", "8", "10", "5"], answer: 1},
+    {q: "Nombor antara 2 dan 4 ialah?", options: ["3", "5", "1", "6"], answer: 0},
+    {q: "Nombor antara 5 dan 7 ialah?", options: ["4", "6", "8", "3"], answer: 1},
+    {q: "Berapakah 0 + 5?", options: ["0", "1", "5", "6"], answer: 2},
+    {q: "Berapakah 5 + 0?", options: ["0", "1", "5", "6"], answer: 2},
+    {q: "Berapakah 2 + 0?", options: ["0", "1", "2", "3"], answer: 2},
+    {q: "Berapakah 0 + 9?", options: ["0", "8", "9", "10"], answer: 2},
+    {q: "Sebutkan 10 dalam perkataan.", options: ["Satu", "Sepuluh", "Lapan", "Tujuh"], answer: 1},
+    {q: "Sebutkan 1 dalam perkataan.", options: ["Satu", "Dua", "Tiga", "Empat"], answer: 0},
+    {q: "Sebutkan 2 dalam perkataan.", options: ["Satu", "Dua", "Tiga", "Empat"], answer: 1},
+    {q: "Sebutkan 3 dalam perkataan.", options: ["Satu", "Dua", "Tiga", "Empat"], answer: 2},
+    {q: "Sebutkan 4 dalam perkataan.", options: ["Satu", "Dua", "Tiga", "Empat"], answer: 3},
+    {q: "Sebutkan 5 dalam perkataan.", options: ["Lima", "Enam", "Tujuh", "Lapan"], answer: 0},
+    {q: "Sebutkan 6 dalam perkataan.", options: ["Lima", "Enam", "Tujuh", "Lapan"], answer: 1},
+    {q: "Sebutkan 7 dalam perkataan.", options: ["Lima", "Enam", "Tujuh", "Lapan"], answer: 2},
+    {q: "Sebutkan 8 dalam perkataan.", options: ["Lima", "Enam", "Tujuh", "Lapan"], answer: 3},
+    {q: "Sebutkan 9 dalam perkataan.", options: ["Sembilan", "Sepuluh", "Satu", "Dua"], answer: 0},
+    {q: "Berapakah jari pada sebelah tangan?", options: ["4", "6", "5", "10"], answer: 2},
+    {q: "Berapakah jumlah jari pada dua belah tangan?", options: ["5", "10", "8", "12"], answer: 1},
+    {q: "Berapakah 1 + 9?", options: ["8", "9", "10", "11"], answer: 2},
+    {q: "Berapakah 2 + 8?", options: ["9", "10", "11", "12"], answer: 1},
+    {q: "Berapakah 3 + 7?", options: ["9", "10", "11", "12"], answer: 1},
+    {q: "Berapakah 4 + 6?", options: ["9", "10", "11", "12"], answer: 1},
+    {q: "Berapakah 5 + 5?", options: ["9", "10", "11", "12"], answer: 1},
+    {q: "Berapakah 6 + 4?", options: ["9", "10", "11", "12"], answer: 1},
+    {q: "Berapakah 7 + 3?", options: ["9", "10", "11", "12"], answer: 1},
+    {q: "Berapakah 8 + 2?", options: ["9", "10", "11", "12"], answer: 1},
+    {q: "Berapakah 9 + 1?", options: ["9", "10", "11", "12"], answer: 1},
+    {q: "Berapakah 10 + 0?", options: ["9", "10", "11", "12"], answer: 1},
+    {q: "Mana satu lebih besar: 10 atau 5?", options: ["10", "5", "Sama", "Tiada"], answer: 0},
+    {q: "Mana satu lebih besar: 2 atau 9?", options: ["2", "9", "Sama", "Tiada"], answer: 1},
+    {q: "Mana satu lebih besar: 4 atau 6?", options: ["4", "6", "Sama", "Tiada"], answer: 1},
+    {q: "Mana satu lebih kecil: 8 atau 2?", options: ["8", "2", "Sama", "Tiada"], answer: 1},
+    {q: "Mana satu lebih kecil: 1 atau 7?", options: ["1", "7", "Sama", "Tiada"], answer: 0},
+    {q: "Berapakah 3 - 0?", options: ["0", "1", "2", "3"], answer: 3},
+    {q: "Berapakah 4 - 0?", options: ["0", "1", "3", "4"], answer: 3},
+    {q: "Berapakah 5 - 0?", options: ["0", "1", "4", "5"], answer: 3},
+    {q: "Berapakah 6 - 0?", options: ["0", "1", "5", "6"], answer: 3},
+    {q: "Berapakah 7 - 0?", options: ["0", "1", "6", "7"], answer: 3},
+    {q: "Berapakah 8 - 0?", options: ["0", "1", "7", "8"], answer: 3},
+    {q: "Berapakah 9 - 0?", options: ["0", "1", "8", "9"], answer: 3},
+    {q: "Berapakah 1 - 0?", options: ["0", "1", "2", "3"], answer: 1},
+    {q: "Berapakah 2 - 0?", options: ["0", "1", "2", "3"], answer: 2},
+    {q: "Susunan menurun: 3, 2, _, 0", options: ["1", "4", "5", "6"], answer: 0},
+    {q: "Susunan menurun: 5, 4, _, 2", options: ["1", "3", "6", "7"], answer: 1},
+    {q: "Susunan menurun: 7, 6, _, 4", options: ["5", "8", "3", "2"], answer: 0},
+    {q: "Susunan menurun: 9, 8, _, 6", options: ["7", "10", "5", "4"], answer: 0},
+    {q: "Susunan menurun: 10, 9, _, 7", options: ["8", "6", "5", "4"], answer: 0},
+    {q: "Berapakah 5 - 1?", options: ["3", "4", "5", "6"], answer: 1},
+    {q: "Berapakah 5 - 2?", options: ["2", "3", "4", "5"], answer: 1},
+    {q: "Berapakah 5 - 3?", options: ["1", "2", "3", "4"], answer: 1},
+    {q: "Berapakah 5 - 4?", options: ["0", "1", "2", "3"], answer: 1}
+];
+;
+
+// === GAME STATE ===
+let state = {
+    screen: 'menu', subject: '', grade: 0, category: '',
+    lives: 3, coins: 0, score: 0, level: 1, playerName: '', pendingMode: '',
+    questionIndex: 0, timer: 15, timerInterval: null,
+    enemyHp: 100, enemies: [{name:'Robot Genius',sprite:'🤖'},{name:'Alien Matematik',sprite:'👽'},{name:'Monster Kartun',sprite:'👾'},{name:'Pengawal Gerbang',sprite:'🐉'}],
+    currentEnemy: 0,
+    // Duel
+    duelRound: 0, duelHeroScore: 0, duelEnemyScore: 0,
+    duelEnemies: [{name:'Robot Genius',sprite:'🤖'},{name:'Alien Matematik',sprite:'👽'},{name:'Kucing Bijak',sprite:'🐱'}],
+    currentDuelEnemy: 0,
+    // Squad
+    squadPower: 0, bossHp: 100, squadMembers: []
+};
+
+function goTo(screen) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById('screen-' + screen).classList.add('active');
+    state.screen = screen;
+    if (['solo-battle','duel','squad','victory','defeat','draw','celebration'].includes(screen)) updatePlayerGreetings();
+}
+
+function updatePlayerGreetings() {
+    const name = state.playerName || 'Pemain';
+    document.getElementById('menu-greeting').textContent = state.playerName ? `Selamat datang, ${name}!` : '';
+    ['solo','duel','squad','victory','defeat','draw','celebration'].forEach(id => {
+        const el = document.getElementById(id + '-player-greeting');
+        if (el) el.textContent = `Semangat, ${name}!`;
+    });
+}
+
+function playBattleIntro(onComplete) {
+    goTo('battle-intro');
+    setTimeout(onComplete, 2200);
+}
+
+function beginMode(mode) {
+    if (state.playerName) {
+        playBattleIntro(() => {
+            if (mode === 'solo') goTo('mode-select');
+            if (mode === 'duel') startDuel();
+            if (mode === 'squad') startSquad();
+        });
+        return;
+    }
+    state.pendingMode = mode;
+    document.getElementById('name-prompt').textContent = '';
+    document.getElementById('player-name-input').value = '';
+    goTo('name-entry');
+    setTimeout(() => document.getElementById('player-name-input').focus(), 50);
+}
+
+function submitPlayerName(event) {
+    event.preventDefault();
+    const input = document.getElementById('player-name-input');
+    const name = input.value.trim();
+    if (!name) {
+        document.getElementById('name-prompt').textContent = 'Sila masukkan nama kamu dahulu 😊';
+        input.focus();
+        return;
+    }
+    state.playerName = name;
+    updatePlayerGreetings();
+    const mode = state.pendingMode;
+    state.pendingMode = '';
+    playBattleIntro(() => {
+        if (mode === 'solo') goTo('mode-select');
+        else if (mode === 'duel') startDuel();
+        else if (mode === 'squad') startSquad();
+    });
+}
+
+document.getElementById('name-form').addEventListener('submit', submitPlayerName);
+
+function startSquad() {
+    state.squadMembers = [];
+    state.squadPower = 0;
+    state.bossHp = 100;
+    document.getElementById('squad-battle-area').classList.add('hidden');
+    goTo('squad');
+}
+
+function selectSubject(sub) {
+    state.subject = sub;
+    renderGradeSelect();
+    goTo('grade-select');
+}
+
+function renderGradeSelect() {
+    const c = document.getElementById('grade-buttons');
+    c.innerHTML = '';
+    for (let i = 1; i <= 6; i++) {
+        const btn = document.createElement('button');
+        btn.className = 'game-card bg-gradient-to-br from-indigo-500 to-purple-600 p-4 text-white font-bold shadow-lg';
+        btn.textContent = 'Darjah ' + i;
+        btn.onclick = () => { state.grade = i; if (i === 1) { renderCategorySelect(); goTo('category-select'); } else if (i === 2) { renderCategorySelect2(); goTo('category-select-2'); } else if (i === 3) { renderCategorySelect3(); goTo('category-select-3'); } else { startSoloBattle(); } };
+        c.appendChild(btn);
+    }
+}
+
+const bonusUnlockCoins = 4000;
+const gradeCategories = {
+    1: ['Kenal Nombor','Masa dan Wang','Operasi Tolak','Operasi Tambah','Operasi Darab','Operasi Bahagi'],
+    2: ['Ukuran dan Sukatan','Ruang (Geometri)','Nombor Bulat Hingga 1000','Pecahan dan Perpuluhan','Operasi Tambah dan Tolak','Operasi Darab dan Bahagi'],
+    3: ['Ruang','Ukuran dan Sukatan','Pengurusan Data','Pecahan , Perpuluhan & Peratus','Nombor Bulat','Operasi ÷ + × -']
+};
+function renderCategorySelect() {
+    renderCategoryButtons('category-buttons', gradeCategories[1]);
+    renderBonusCategoryButtons(1);
+}
+
+function renderCategorySelect2() {
+    renderCategoryButtons('category-buttons-2', gradeCategories[2]);
+    renderBonusCategoryButtons(2);
+}
+
+function renderCategorySelect3() {
+    renderCategoryButtons('category-buttons-3', gradeCategories[3]);
+    renderBonusCategoryButtons(3);
+}
+
+function renderBonusCategoryButtons(grade) {
+    const id = 'bonus-category-buttons-' + grade;
+    const c = document.getElementById(id);
+    if (!c) return;
+    c.innerHTML = '';
+    const unlocked = state.coins >= bonusUnlockCoins;
+    document.getElementById('bonus-progress-' + grade).textContent = `Coin: ${Math.min(state.coins, bonusUnlockCoins)}/${bonusUnlockCoins}`;
+    gradeCategories[grade].forEach((category, index) => {
+        const btn = document.createElement('button');
+        btn.className = unlocked ? 'game-card bg-gradient-to-br from-emerald-500 to-cyan-500 p-4 text-white font-bold text-sm shadow-lg' : 'game-card bg-gray-700/70 p-4 text-gray-300 font-bold text-sm shadow-lg opacity-70';
+        btn.textContent = unlocked ? '🔓 ' + category : '🔒 ' + category;
+        btn.onclick = () => {
+            if (!unlocked) {
+                document.getElementById('bonus-progress-' + grade).textContent = `🔒 Perlu ${bonusUnlockCoins} Coin untuk buka kategori ini! (${Math.min(state.coins, bonusUnlockCoins)}/${bonusUnlockCoins})`;
+                return;
+            }
+            state.category = category;
+            startSoloBattle();
+        };
+        c.appendChild(btn);
+    });
+}
+
+function renderCategoryButtons(id, categories) {
+    const colors = ['from-yellow-400 to-orange-500','from-pink-400 to-rose-500','from-blue-400 to-cyan-500','from-green-400 to-emerald-500','from-purple-400 to-violet-500','from-red-400 to-orange-500'];
+    const c = document.getElementById(id);
+    c.innerHTML = '';
+    categories.forEach((category, index) => {
+        const btn = document.createElement('button');
+        btn.className = `game-card bg-gradient-to-br ${colors[index]} p-5 text-white font-black text-sm shadow-lg min-h-20`;
+        btn.textContent = category;
+        btn.onclick = () => { state.category = category; startSoloBattle(); };
+        c.appendChild(btn);
+    });
+}
+
+// === SOLO BATTLE ===
+function startSoloBattle() {
+    state.lives = 3; state.coins = 0; state.score = 0; state.level = 1;
+    state.questionIndex = 0; state.enemyHp = 100; state.currentEnemy = 0;
+    goTo('solo-battle');
+    updateHUD();
+    updateEnemy();
+    loadQuestion();
+}
+
+function updateHUD() {
+    [1, 2, 3].forEach(grade => {
+        const progress = document.getElementById('bonus-progress-' + grade);
+        if (progress) progress.textContent = `Coin: ${Math.min(state.coins, bonusUnlockCoins)}/${bonusUnlockCoins}`;
+        if (document.getElementById('bonus-category-buttons-' + grade)) renderBonusCategoryButtons(grade);
+    });
+    document.getElementById('hud-lives').textContent = state.lives;
+    document.getElementById('hud-coins').textContent = state.coins;
+    document.getElementById('hud-score').textContent = state.score;
+    document.getElementById('hud-level').textContent = state.level;
+    document.getElementById('progress-bar').style.width = (state.questionIndex / 100 * 100) + '%';
+}
+
+function updateEnemy() {
+    const e = state.enemies[state.currentEnemy % state.enemies.length];
+    document.getElementById('enemy-sprite').textContent = e.sprite;
+    document.getElementById('enemy-name').textContent = e.name;
+    document.getElementById('enemy-hp').style.width = state.enemyHp + '%';
+}
+
+function loadQuestion() {
+    clearInterval(state.timerInterval);
+    if (!sampleQuestions.length) {
+        document.getElementById('solo-question-progress').textContent = '1/100';
+        document.getElementById('question-text').textContent = 'Soalan untuk kategori ini akan datang tidak lama lagi 😊';
+        document.getElementById('options-grid').innerHTML = '<p class="col-span-2 text-gray-600 font-bold">Belum ada soalan. Pilih kategori lain atau cuba lagi nanti!</p>';
+        return;
+    }
+    document.getElementById('solo-question-progress').textContent = `${state.questionIndex + 1}/100`;
+    state.timer = 15;
+    document.getElementById('hud-timer').textContent = 15;
+    const q = sampleQuestions[state.questionIndex % sampleQuestions.length];
+    document.getElementById('question-text').textContent = q.q;
+    const grid = document.getElementById('options-grid');
+    grid.innerHTML = '';
+    q.options.forEach((opt, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'p-3 rounded-xl font-bold text-white ' + ['bg-blue-500','bg-green-500','bg-orange-500','bg-purple-500'][i];
+        btn.textContent = String.fromCharCode(65+i) + '. ' + opt;
+        btn.onclick = () => answerQuestion(i, q.answer);
+        grid.appendChild(btn);
+    });
+    state.timerInterval = setInterval(() => {
+        state.timer--;
+        document.getElementById('hud-timer').textContent = state.timer;
+        if (state.timer <= 0) { clearInterval(state.timerInterval); answerQuestion(-1, q.answer); }
+    }, 1000);
+}
+
+function answerQuestion(selected, correct) {
+    clearInterval(state.timerInterval);
+    const fb = document.getElementById('feedback-text');
+    if (selected === correct) {
+        fb.textContent = '✨ PANDAI! ✨';
+        fb.className = 'text-2xl font-black text-center h-8 mb-2 text-yellow-300';
+        state.coins += 10; state.score += 10;
+        state.enemyHp -= 25;
+        document.getElementById('enemy-sprite').classList.add('shake');
+        setTimeout(() => document.getElementById('enemy-sprite').classList.remove('shake'), 400);
+        if (state.enemyHp <= 0) {
+            state.currentEnemy++;
+            state.enemyHp = 100;
+            state.level++;
+            if (state.currentEnemy >= state.enemies.length) { goTo('victory'); return; }
+            updateEnemy();
+        }
+    } else {
+        fb.textContent = '❌ CUBA LAGI!';
+        fb.className = 'text-2xl font-black text-center h-8 mb-2 text-red-400';
+        state.coins = Math.max(0, state.coins - 5);
+        state.lives--;
+        if (state.lives <= 0) { goTo('defeat'); return; }
+    }
+    updateHUD();
+    state.questionIndex++;
+    setTimeout(() => { fb.textContent = ''; loadQuestion(); }, 1200);
+}
+
+// === DUEL MODE ===
+function startDuel() {
+    state.duelRound = 1; state.duelHeroScore = 0; state.duelEnemyScore = 0;
+    state.currentDuelEnemy = Math.floor(Math.random() * state.duelEnemies.length);
+    goTo('duel');
+    updateDuelUI();
+    loadDuelQuestion();
+}
+
+function updateDuelUI() {
+    const e = state.duelEnemies[state.currentDuelEnemy];
+    document.getElementById('duel-enemy-sprite').textContent = e.sprite;
+    document.getElementById('duel-enemy-name').textContent = e.name;
+    document.getElementById('duel-round').textContent = state.duelRound;
+    document.getElementById('duel-hero-score').textContent = state.duelHeroScore;
+    document.getElementById('duel-enemy-score').textContent = state.duelEnemyScore;
+}
+
+function loadDuelQuestion() {
+    document.getElementById('duel-question-progress').textContent = `${state.duelRound}/3`;
+    const q = sampleQuestions[Math.floor(Math.random() * sampleQuestions.length)];
+    document.getElementById('duel-question-text').textContent = q.q;
+    const grid = document.getElementById('duel-options');
+    grid.innerHTML = '';
+    q.options.forEach((opt, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'p-3 rounded-xl font-bold text-white ' + ['bg-blue-500','bg-green-500','bg-orange-500','bg-purple-500'][i];
+        btn.textContent = String.fromCharCode(65+i) + '. ' + opt;
+        btn.onclick = () => duelAnswer(i, q.answer);
+        grid.appendChild(btn);
+    });
+}
+
+function duelAnswer(selected, correct) {
+    if (selected === correct) { state.duelHeroScore++; }
+    else { state.duelEnemyScore++; }
+    state.duelRound++;
+    updateDuelUI();
+    if (state.duelRound > 3) {
+        if (state.duelHeroScore > state.duelEnemyScore) goTo('victory');
+        else if (state.duelHeroScore < state.duelEnemyScore) goTo('defeat');
+        else goTo('draw');
+        return;
+    }
+    setTimeout(loadDuelQuestion, 800);
+}
+
+// === SQUAD MODE ===
+function selectSquadMember(member) {
+    if (!state.squadMembers.includes(member)) state.squadMembers.push(member);
+    if (state.squadMembers.length >= 2) {
+        state.squadPower = 0; state.bossHp = 100;
+        document.getElementById('squad-battle-area').classList.remove('hidden');
+        loadSquadQuestion();
+    }
+}
+
+function loadSquadQuestion() {
+    document.getElementById('squad-question-progress').textContent = `${Math.min(Math.floor(state.squadPower / 25) + 1, 100)}/100`;
+    const q = sampleQuestions[Math.floor(Math.random() * sampleQuestions.length)];
+    document.getElementById('squad-question-text').textContent = q.q;
+    const grid = document.getElementById('squad-options');
+    grid.innerHTML = '';
+    q.options.forEach((opt, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'p-3 rounded-xl font-bold text-white ' + ['bg-blue-500','bg-green-500','bg-orange-500','bg-purple-500'][i];
+        btn.textContent = String.fromCharCode(65+i) + '. ' + opt;
+        btn.onclick = () => squadAnswer(i, q.answer);
+        grid.appendChild(btn);
+    });
+}
+
+function squadAnswer(selected, correct) {
+    if (selected === correct) {
+        state.squadPower += 25;
+        state.bossHp -= 25;
+    }
+    document.getElementById('squad-power').textContent = state.squadPower;
+    document.getElementById('boss-hp').style.width = Math.max(0, state.bossHp) + '%';
+    if (state.bossHp <= 0) { goTo('celebration'); state.squadMembers = []; return; }
+    setTimeout(loadSquadQuestion, 800);
+}
+
+function playAgain() {
+    if (state.screen === 'victory' || state.screen === 'defeat') startSoloBattle();
+    else startDuel();
+}
+
+lucide.createIcons();
+</script>
+ 
+</body></html>
