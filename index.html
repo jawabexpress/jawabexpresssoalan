@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jom Pandai Academy Battle</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+    <style>
+        * { font-family: 'Fira Sans', sans-serif; }
+        .screen { display: none; width: 100%; min-height: 100vh; }
+        .screen.active { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .game-card { border-radius: 1.2rem; backdrop-filter: blur(8px); }
+    </style>
+</head>
+<body class="bg-indigo-900 w-full overflow-x-hidden">
+
+    <!-- MAIN MENU -->
+    <div id="screen-menu" class="screen active p-6 text-center">
+        <h1 class="text-3xl font-black text-yellow-300 mb-6">JOM PANDAI ACADEMY</h1>
+        <div class="grid grid-cols-2 gap-3 w-full max-w-sm">
+            <button onclick="beginMode('solo')" class="game-card bg-yellow-500 p-4 text-white font-bold">⚡ Solo</button>
+            <button onclick="beginMode('duel')" class="game-card bg-red-500 p-4 text-white font-bold">🆚 Duel</button>
+        </div>
+    </div>
+
+    <!-- SOLO BATTLE -->
+    <div id="screen-solo-battle" class="screen p-4">
+        <div id="question-box" class="game-card bg-white p-6 w-full max-w-sm text-center">
+            <p id="question-text" class="font-bold text-gray-800 text-lg mb-4"></p>
+            <div id="options-grid" class="grid grid-cols-1 gap-3"></div>
+        </div>
+        <button onclick="goTo('menu')" class="mt-6 text-white underline">Keluar</button>
+    </div>
+
+    <script>
+        // DATA SOALAN (Lengkap)
+        const sampleQuestions = [
+            {q: "Apakah nombor selepas 1?", options: ["2", "3", "0", "4"], answer: 0},
+            {q: "Berapakah 2 + 2?", options: ["3", "4", "5", "6"], answer: 1},
+            {q: "Sebelum nombor 2 ialah?", options: ["0", "3", "1", "4"], answer: 2},
+            {q: "Tuliskan 'enam' dalam angka.", options: ["4", "5", "6", "7"], answer: 2},
+            {q: "Berapakah 10 - 5?", options: ["4", "6", "5", "3"], answer: 2}
+        ];
+
+        let state = { screen: 'menu', questionIndex: 0 };
+
+        function goTo(screen) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById('screen-' + screen).classList.add('active');
+            state.screen = screen;
+        }
+
+        function beginMode(mode) {
+            goTo('solo-battle');
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            const q = sampleQuestions[state.questionIndex % sampleQuestions.length];
+            document.getElementById('question-text').textContent = q.q;
+            const grid = document.getElementById('options-grid');
+            grid.innerHTML = '';
+            q.options.forEach((opt, i) => {
+                const btn = document.createElement('button');
+                btn.className = 'p-3 bg-blue-600 text-white rounded-lg font-bold';
+                btn.textContent = opt;
+                btn.onclick = () => {
+                    alert(i === q.answer ? "Betul! 🎉" : "Salah ❌");
+                    state.questionIndex++;
+                    loadQuestion();
+                };
+                grid.appendChild(btn);
+            });
+        }
+    </script>
+</body>
+</html>
