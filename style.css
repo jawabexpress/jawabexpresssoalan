@@ -1,0 +1,111 @@
+body {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background-color: #87CEEB; /* Warna langit */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#game-container {
+    background-color: white;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    overflow: hidden;
+    text-align: center;
+}
+
+#stats-bar {
+    display: flex;
+    justify-content: space-around;
+    background-color: #FFD700;
+    padding: 15px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+#battle-arena {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 40px 20px;
+    background-image: linear-gradient(to bottom, #87CEEB, #90EE90);
+    border-bottom: 5px solid #228B22;
+}
+
+.character {
+    font-size: 80px;
+    transition: transform 0.2s ease;
+}
+
+.name-tag {
+    font-weight: bold;
+    margin-top: 10px;
+    background: rgba(255,255,255,0.7);
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+#question-box {
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+
+#math-question {
+    font-size: 2.5rem;
+    color: #333;
+    margin: 10px 0;
+}
+
+#answer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    padding: 20px;
+}
+
+.ans-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 15px;
+    cursor: pointer;
+    box-shadow: 0 5px 0 #2E8B57;
+    transition: all 0.1s;
+}
+
+.ans-btn:active {
+    transform: translateY(5px);
+    box-shadow: 0 0 0 #2E8B57;
+}
+
+#message {
+    padding: 15px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #444;
+}
+
+/* Animasi Serangan */
+.attack-right { animation: dashRight 0.3s ease-in-out; }
+.attack-left { animation: dashLeft 0.3s ease-in-out; }
+.shake { animation: shakeAnim 0.3s; }
+
+@keyframes dashRight {
+    50% { transform: translateX(50px) scale(1.2); }
+}
+@keyframes dashLeft {
+    50% { transform: translateX(-50px) scale(1.2); }
+}
+@keyframes shakeAnim {
+    0%, 100% { transform: translateX(0); color: inherit; filter: none; }
+    25% { transform: translateX(-10px); filter: grayscale(100%) brightness(50%); }
+    50% { transform: translateX(10px); filter: grayscale(100%) brightness(50%); }
+    75% { transform: translateX(-10px); filter: grayscale(100%) brightness(50%); }
+}
