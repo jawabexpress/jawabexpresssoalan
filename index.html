@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jom Pandai Academy: Misi Wira Ilmu</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Header (Stats) -->
+        <div id="stats-bar">
+            <div class="stat">❤️ Nyawa: <span id="hp">5</span></div>
+            <div class="stat">🪙 Coin: <span id="coin">0</span></div>
+            <div class="stat">⭐ Level: <span id="level">1</span></div>
+        </div>
+
+        <!-- Battle Area -->
+        <div id="battle-arena">
+            <div id="hero-container">
+                <div id="hero" class="character">🦁</div>
+                <div class="name-tag">Hero (Awak)</div>
+            </div>
+            <div id="vs">VS</div>
+            <div id="enemy-container">
+                <div id="enemy" class="character">👾</div>
+                <div class="name-tag">Raksasa Hutan</div>
+            </div>
+        </div>
+
+        <!-- Soalan Area -->
+        <div id="question-box">
+            <h2>Selesaikan Misi!</h2>
+            <h1 id="math-question">5 + 3 = ?</h1>
+        </div>
+
+        <!-- Butang Jawapan -->
+        <div id="answer-grid">
+            <button class="ans-btn" onclick="checkAnswer(0)" id="btn-0">A</button>
+            <button class="ans-btn" onclick="checkAnswer(1)" id="btn-1">B</button>
+            <button class="ans-btn" onclick="checkAnswer(2)" id="btn-2">C</button>
+            <button class="ans-btn" onclick="checkAnswer(3)" id="btn-3">D</button>
+        </div>
+        
+        <!-- Mesej Status -->
+        <div id="message">Pilih jawapan yang betul untuk menyerang!</div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
