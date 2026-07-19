@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jom Pandai Academy Battle</title>
+  
+  <!-- External Libraries -->
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-template-id="__page-root" class="w-full overflow-x-hidden" style="background: linear-gradient(rgb(26, 5, 51), rgb(15, 27, 77));">
+
+  <!-- MAIN MENU -->
+  <div id="screen-menu" class="screen active items-center justify-center p-6 text-center relative overflow-hidden">
+   <div class="absolute inset-0 bg-gradient-to-b from-purple-900 via-indigo-800 to-blue-900 -z-10"></div>
+   <div class="absolute inset-0 opacity-20 -z-5" style="background: radial-gradient(circle at 30% 20%, #ffd700 0%, transparent 40%), radial-gradient(circle at 70% 80%, #ff69b4 0%, transparent 40%);"></div>
+   <div class="text-6xl mb-2">⚔️🧠</div>
+   <h1 class="canva-text text-3xl font-black text-yellow-300 drop-shadow-lg mb-1" style="text-shadow: rgba(255, 200, 0, 0.8) 0px 0px 20px; font-weight: 900; font-size: 32px;">JOM PANDAI ACADEMY BATTLE</h1>
+   <p class="canva-text text-lg text-pink-200 mb-6" style="font-weight: 500; font-size: 16px;">Belajar. Bermain. Menang!</p>
+   <p id="menu-greeting" class="text-sm text-yellow-100 mb-3 min-h-5"></p>
+   <div class="grid grid-cols-2 gap-3 w-full max-w-sm">
+    <button onclick="beginMode('solo')" class="game-card bg-gradient-to-br from-yellow-400 to-orange-500 p-4 text-white font-bold text-sm shadow-lg glow-btn">⚡ Solo</button> 
+    <button onclick="beginMode('duel')" class="game-card bg-gradient-to-br from-red-400 to-pink-500 p-4 text-white font-bold text-sm shadow-lg">🆚 Duel</button> 
+    <button onclick="beginMode('squad')" class="game-card bg-gradient-to-br from-blue-400 to-purple-500 p-4 text-white font-bold text-sm shadow-lg">🛡️ Battle Squad</button> 
+    <button onclick="goTo('pembelajaran')" class="game-card bg-gradient-to-br from-green-400 to-teal-500 p-4 text-white font-bold text-sm shadow-lg">📚 Pembelajaran</button> 
+    <button onclick="goTo('pencapaian')" class="game-card bg-gradient-to-br from-amber-400 to-yellow-600 p-4 text-white font-bold text-sm shadow-lg">🏆 Pencapaian</button> 
+    <button onclick="goTo('tetapan')" class="game-card bg-gradient-to-br from-gray-500 to-gray-700 p-4 text-white font-bold text-sm shadow-lg">⚙️ Tetapan</button>
+   </div>
+   <p class="text-xs text-indigo-300 mt-4 opacity-70">v1.0 • Untuk Darjah 1-6</p>
+  </div>
+
+  <!-- NAME ENTRY -->
+  <div id="screen-name-entry" class="screen items-center justify-center p-6 text-center relative overflow-hidden">
+   <div class="absolute inset-0 bg-gradient-to-b from-pink-900 via-purple-800 to-indigo-900 -z-10"></div>
+   <div class="text-6xl mb-3">🌟🧠</div>
+   <h2 class="canva-text text-3xl font-black text-yellow-300 mb-2">Siapa Nama Kamu?</h2>
+   <p class="canva-text text-pink-100 mb-5">Masukkan nama kamu untuk mula bermain!</p>
+   <form id="name-form" class="w-full max-w-sm">
+    <label class="canva-text sr-only" for="player-name-input">Nama Pemain</label> 
+    <input id="player-name-input" type="text" maxlength="24" autocomplete="name" class="w-full rounded-2xl p-4 text-center text-lg font-bold text-gray-800 outline-none focus:ring-4 focus:ring-yellow-300" placeholder="Taip nama kamu…">
+    <p id="name-prompt" class="min-h-6 text-sm text-yellow-200 font-bold mt-2" aria-live="polite"></p>
+    <button type="submit" class="game-card w-full bg-gradient-to-r from-yellow-400 to-orange-500 p-4 text-white font-black shadow-lg mt-2">Mula Main ⚡</button>
+   </form>
+  </div>
+
+  <!-- BATTLE READY INTRO -->
+  <div id="screen-battle-intro" class="screen items-center justify-center p-6 text-center relative overflow-hidden">
+   <div class="absolute inset-0 bg-gradient-to-b from-orange-900 via-rose-800 to-purple-950 -z-10"></div>
+   <div class="battle-burst absolute inset-0 pointer-events-none" aria-hidden="true"></div>
+   <p class="canva-text text-yellow-200 font-black tracking-widest uppercase mb-3">Bersedia Untuk Bertempur!</p>
+   <div class="hero-entrance relative w-full max-w-sm h-52 flex items-center justify-center" aria-hidden="true">
+    <div class="motion-lines absolute left-0 right-0 top-1/2"></div>
+    <div class="hero-dust absolute bottom-4"></div>
+    <div class="hero-ready text-8xl relative">
+     🦸‍♂️<span class="hero-weapon absolute -right-5 top-5 text-5xl">⚡</span>
+    </div>
+   </div>
+   <h2 class="canva-text text-3xl font-black text-yellow-300 mb-2">JOM BERJUANG!</h2>
+   <p class="canva-text text-orange-100">Kuasa ilmu, bersedia!</p>
+  </div>
+
+  <!-- MODE SELECT (Subject) -->
+  <div id="screen-mode-select" class="screen items-center p-6">
+   <button onclick="goTo('menu')" class="self-start text-white mb-4 flex items-center gap-1"><i data-lucide="arrow-left" style="width:20px;height:20px;"></i> Menu</button>
+   <h2 class="canva-text text-2xl font-black text-white mb-2">Pilih Subjek</h2>
+   <div class="grid grid-cols-2 gap-3 w-full max-w-sm">
+    <button onclick="selectSubject('matematik')" class="subject-card game-card bg-gradient-to-br from-blue-500 to-cyan-400 p-5 text-white font-bold shadow-lg">Soalan Matematik</button> 
+    <button onclick="selectSubject('bahasa_melayu')" class="subject-card game-card bg-gradient-to-br from-green-500 to-emerald-400 p-5 text-white font-bold shadow-lg">Soalan Bahasa Melayu</button> 
+    <button onclick="selectSubject('english')" class="subject-card game-card bg-gradient-to-br from-purple-500 to-violet-400 p-5 text-white font-bold shadow-lg">Soalan Bahasa Inggeris</button> 
+    <button onclick="selectSubject('sains')" class="subject-card game-card bg-gradient-to-br from-orange-500 to-red-400 p-5 text-white font-bold shadow-lg">Soalan Sains</button>
+   </div>
+  </div>
+
+  <!-- GRADE SELECT -->
+  <div id="screen-grade-select" class="screen items-center p-6">
+   <button onclick="goTo('mode-select')" class="self-start text-white mb-4 flex items-center gap-1"><i data-lucide="arrow-left" style="width:20px;height:20px;"></i> Kembali</button>
+   <h2 class="canva-text text-2xl font-black text-white mb-4">Pilih Darjah</h2>
+   <div class="grid grid-cols-2 gap-3 w-full max-w-sm" id="grade-buttons"></div>
+  </div>
+
+  <!-- DARJAH 1 CATEGORY SELECT -->
+  <div id="screen-category-select" class="screen items-center p-6 text-center relative overflow-hidden">
+   <div class="absolute inset-0 bg-gradient-to-b from-cyan-900 via-blue-800 to-indigo-900 -z-10"></div>
+   <button onclick="goTo('grade-select')" class="self-start text-white mb-4 flex items-center gap-1"><i data-lucide="arrow-left" style="width:20px;height:20px;"></i> Kembali</button>
+   <h2 class="canva-text text-2xl font-black text-yellow-300 mb-2">Pilih Kategori Darjah 1</h2>
+   <p class="canva-text text-cyan-100 mb-5">Pilih satu kategori untuk mula belajar!</p>
+   <div id="category-buttons" class="grid grid-cols-2 gap-3 w-full max-w-sm"></div>
+   <div class="w-full max-w-sm mt-6 rounded-2xl bg-black/25 p-4">
+    <p id="bonus-progress-1" class="text-yellow-200 font-bold text-sm mb-2">Coin: 0/4000</p>
+    <p class="text-cyan-100 text-sm mb-3">🔒 Kategori Bonus — buka dengan 4000 Coin</p>
+    <div id="bonus-category-buttons-1" class="grid grid-cols-2 gap-3"></div>
+   </div>
+  </div>
+
+  <!-- DARJAH 2 CATEGORY SELECT -->
+  <div id="screen-category-select-2" class="screen items-center p-6 text-center relative overflow-hidden" style="background: linear-gradient(rgb(88, 28, 135), rgb(49, 46, 129));">
+   <div class="absolute inset-0 bg-gradient-to-b from-fuchsia-900 via-purple-800 to-indigo-900 -z-10"></div>
+   <button onclick="goTo('grade-select')" class="self-start text-white mb-4 flex items-center gap-1"><i data-lucide="arrow-left" style="width:20px;height:20px;"></i> Kembali</button>
+   <h2 class="text-2xl font-black text-yellow-300 mb-2">Pilih Kategori Darjah 2</h2>
+   <p class="text-fuchsia-100 mb-5">Pilih satu kategori untuk mula belajar!</p>
+   <div id="category-buttons-2" class="grid grid-cols-2 gap-3 w-full max-w-sm"></div>
+   <div class="w-full max-w-sm mt-6 rounded-2xl bg-black/25 p-4">
+    <p id="bonus-progress-2" class="text-yellow-200 font-bold text-sm mb-2">Coin: 0/4000</p>
+    <p class="text-fuchsia-100 text-sm mb-3">🔒 Kategori Bonus — buka dengan 4000 Coin</p>
+    <div id="bonus-category-buttons-2" class="grid grid-cols-2 gap-3"></div>
+   </div>
+  </div>
+
+  <!-- DARJAH 3 CATEGORY SELECT -->
+  <div id="screen-category-select-3" class="screen items-center p-6 text-center relative overflow-hidden" style="background: linear-gradient(rgb(124, 45, 18), rgb(159, 18, 57));">
+   <div class="absolute inset-0 bg-gradient-to-b from-amber-900 via-orange-800 to-rose-900 -z-10"></div>
+   <button onclick="goTo('grade-select')" class="self-start text-white mb-4 flex items-center gap-1"><i data-lucide="arrow-left" style="width:20px;height:20px;"></i> Kembali</button>
+   <h2 class="canva-text text-2xl font-black text-yellow-300 mb-2">Pilih Kategori Darjah 3</h2>
+   <p class="canva-text text-orange-100 mb-5">Pilih satu kategori untuk mula belajar!</p>
+   <div id="category-buttons-3" class="grid grid-cols-2 gap-3 w-full max-w-sm"></div>
+   <div class="w-full max-w-sm mt-6 rounded-2xl bg-black/25 p-4">
+    <p id="bonus-progress-3" class="text-yellow-200 font-bold text-sm mb-2">Coin: 0/4000</p>
+    <p class="text-orange-100 text-sm mb-3">🔒 Kategori Bonus — buka dengan 4000 Coin</p>
+    <div id="bonus-category-buttons-3" class="grid grid-cols-2 gap-3"></div>
+   </div>
+  </div>
+
+  <!-- SOLO BATTLE -->
+  <div id="screen-solo-battle" class="screen items-center p-4 relative">
+   <p id="solo-player-greeting" class="text-center text-yellow-200 font-bold text-sm mb-2"></p>
+   <div class="w-full flex justify-between items-center mb-3 flex-wrap gap-1">
+    <div class="hud-item">❤️ <span id="hud-lives">3</span></div>
+    <div class="hud-item">🪙 <span id="hud-coins">0</span></div>
+    <div class="hud-item">⭐ <span id="hud-score">0</span></div>
+    <div class="hud-item">🏆 Lv<span id="hud-level">1</span></div>
+    <div class="hud-item">⏱️ <span id="hud-timer">15</span></div>
+   </div>
+   <div id="enemy-display" class="text-center mb-3">
+    <div id="enemy-sprite" class="text-6xl">🤖</div>
+    <div id="enemy-name" class="text-white font-bold text-sm mt-1">Robot Genius</div>
+    <div class="w-40 h-3 bg-gray-700 rounded-full mx-auto mt-1">
+     <div id="enemy-hp" class="h-full bg-red-500 rounded-full transition-all" style="width:100%"></div>
+    </div>
+   </div>
+   <div id="feedback-text" class="text-2xl font-black text-center h-8 mb-2"></div>
+   <div id="solo-question-progress" class="text-center text-yellow-200 font-black text-lg mb-2" aria-live="polite">1/100</div>
+   <div id="question-box" class="game-card bg-white/95 p-4 w-full max-w-sm text-center mb-3">
+    <p id="question-text" class="font-bold text-gray-800 text-lg mb-3">Soalan akan muncul di sini</p>
+    <div id="options-grid" class="grid grid-cols-2 gap-2"></div>
+   </div>
+   <div class="w-full max-w-sm bg-gray-700 rounded-full h-2">
+    <div id="progress-bar" class="h-full bg-gradient-to-r from-green-400 to-emerald-500 rounded-full transition-all" style="width:0%"></div>
+   </div>
+   <button onclick="goTo('menu')" class="mt-3 text-xs text-gray-400 underline">Keluar</button>
+  </div>
+
+  <!-- DUEL BATTLE -->
+  <div id="screen-duel" class="screen items-center justify-center p-6 text-center">
+   <p id="duel-player-greeting" class="text-yellow-100 font-bold text-sm mb-2"></p>
+   <h2 class="text-2xl font-black text-yellow-300 mb-4">⚔️ DUEL MODE</h2>
+   <div class="flex items-center gap-4 mb-4">
+    <div class="text-center">
+     <div class="text-5xl">🦸</div>
+     <p class="text-white font-bold text-sm">Hero</p>
+    </div>
+    <span class="text-3xl font-black text-red-400">VS</span>
+    <div class="text-center">
+     <div class="text-5xl" id="duel-enemy-sprite">🤖</div>
+     <p class="text-white font-bold text-sm" id="duel-enemy-name">Robot Genius</p>
+    </div>
+   </div>
+   <div class="text-white mb-2">
+    Pusingan: <span id="duel-round">1</span>/3 | Skor: <span id="duel-hero-score">0</span> - <span id="duel-enemy-score">0</span>
+   </div>
+   <div id="duel-question-progress" class="text-center text-yellow-200 font-black text-lg mb-2" aria-live="polite">1/3</div>
+   <div id="duel-question-box" class="game-card bg-white/95 p-4 w-full max-w-sm text-center mb-3">
+    <p id="duel-question-text" class="font-bold text-gray-800 mb-3">Soalan Duel</p>
+    <div id="duel-options" class="grid grid-cols-2 gap-2"></div>
+   </div>
+   <button onclick="goTo('menu')" class="text-xs text-gray-400 underline mt-2">Keluar</button>
+  </div>
+
+  <!-- BATTLE SQUAD -->
+  <div id="screen-squad" class="screen items-center p-6">
+   <button onclick="goTo('menu')" class="self-start text-white mb-4 flex items-center gap-1"><i data-lucide="arrow-left" style="width:20px;height:20px;"></i> Menu</button>
+   <p id="squad-player-greeting" class="text-yellow-100 font-bold text-sm mb-2"></p>
+   <h2 class="text-2xl font-black text-cyan-300 mb-3">🛡️ BATTLE SQUAD</h2>
+   <p class="text-white text-sm mb-3">Pilih pasukan anda:</p>
+   <div class="grid grid-cols-2 gap-3 w-full max-w-sm mb-4">
+    <button onclick="selectSquadMember('kucing')" class="game-card bg-gradient-to-br from-pink-400 to-rose-500 p-3 text-white font-bold text-sm">🐱 Kucing Matematik</button> 
+    <button onclick="selectSquadMember('robot')" class="game-card bg-gradient-to-br from-gray-400 to-blue-500 p-3 text-white font-bold text-sm">🤖 Robot Pintar</button> 
+    <button onclick="selectSquadMember('wizard')" class="game-card bg-gradient-to-br from-purple-400 to-indigo-500 p-3 text-white font-bold text-sm">🧙 Wizard Ilmu</button> 
+    <button onclick="selectSquadMember('angkasawan')" class="game-card bg-gradient-to-br from-teal-400 to-cyan-500 p-3 text-white font-bold text-sm">🚀 Angkasawan Bijak</button>
+   </div>
+   <div id="squad-battle-area" class="hidden w-full max-w-sm text-center">
+    <div class="text-4xl mb-2">👾</div>
+    <p class="text-white font-bold">BOSS: Naga Kejahilan</p>
+    <div class="w-full h-4 bg-gray-700 rounded-full my-2">
+     <div id="boss-hp" class="h-full bg-red-500 rounded-full transition-all" style="width:100%"></div>
+    </div>
+    <div class="text-white text-sm mb-2">
+     Kuasa Pasukan: <span id="squad-power">0</span>%
+    </div>
+    <div id="squad-question-progress" class="text-center text-yellow-200 font-black text-lg mb-2" aria-live="polite">1/100</div>
+    <div id="squad-question-box" class="game-card bg-white/95 p-4 mb-3">
+     <p id="squad-question-text" class="font-bold text-gray-800 mb-3">Soalan Boss</p>
+     <div id="squad-options" class="grid grid-cols-2 gap-2"></div>
+    </div>
+   </div>
+  </div>
+
+  <!-- PEMBELAJARAN -->
+  <div id="screen-pembelajaran" class="screen items-center p-6">
+   <button onclick="goTo('menu')" class="self-start text-white mb-4 flex items-center gap-1"><i data-lucide="arrow-left" style="width:20px;height:20px;"></i> Menu</button>
+   <h2 class="canva-text text-2xl font-black text-green-300 mb-4">📚 Pembelajaran</h2>
+   <div class="space-y-3 w-full max-w-sm">
+    <div class="game-card bg-white/10 p-4 text-white"><span class="text-xl mr-2">⚡</span><strong>Solo:</strong> Lawan musuh kartun dengan kuasa ilmu!</div>
+    <div class="game-card bg-white/10 p-4 text-white"><span class="text-xl mr-2">🆚</span><strong>Duel:</strong> Lawan kawan atau komputer 1-lawan-1!</div>
+    <div class="game-card bg-white/10 p-4 text-white"><span class="text-xl mr-2">🛡️</span><strong>Squad:</strong> Bina pasukan untuk kalahkan Boss!</div>
+    <div class="game-card bg-white/10 p-4 text-white"><span class="text-xl mr-2">📚</span><strong>Subjek:</strong> Matematik, BM, English, Sains</div>
+    <div class="game-card bg-white/10 p-4 text-white"><span class="text-xl mr-2">🎯</span><strong>Gred:</strong> Darjah 1 hingga Darjah 6</div>
+   </div>
+  </div>
+
+  <!-- PENCAPAIAN -->
+  <div id="screen-pencapaian" class="screen items-center p-6">
+   <button onclick="goTo('menu')" class="self-start text-white mb-4 flex items-center gap-1"><i data-lucide="arrow-left" style="width:20px;height:20px;"></i> Menu</button>
+   <h2 class="canva-text text-2xl font-black text-yellow-300 mb-4">🏆 Pencapaian</h2>
+   <div class="grid grid-cols-3 gap-3 w-full max-w-sm" id="badges-grid">
+    <div class="game-card bg-white/10 p-3 text-center"><div class="text-3xl">🥇</div><p class="text-white text-xs mt-1">Pertama Menang</p></div>
+    <div class="game-card bg-white/10 p-3 text-center"><div class="text-3xl">🔥</div><p class="text-white text-xs mt-1">5 Betul Berturut</p></div>
+    <div class="game-card bg-white/10 p-3 text-center"><div class="text-3xl">⭐</div><p class="text-white text-xs mt-1">100 Markah</p></div>
+    <div class="game-card bg-white/10 p-3 text-center"><div class="text-3xl">🐱</div><p class="text-white text-xs mt-1">Kucing Unlocked</p></div>
+    <div class="game-card bg-white/10 p-3 text-center opacity-40"><div class="text-3xl">🔒</div><p class="text-white text-xs mt-1">???</p></div>
+    <div class="game-card bg-white/10 p-3 text-center opacity-40"><div class="text-3xl">🔒</div><p class="text-white text-xs mt-1">???</p></div>
+   </div>
+  </div>
+
+  <!-- TETAPAN -->
+  <div id="screen-tetapan" class="screen items-center p-6">
+   <button onclick="goTo('menu')" class="self-start text-white mb-4 flex items-center gap-1"><i data-lucide="arrow-left" style="width:20px;height:20px;"></i> Menu</button>
+   <h2 class="canva-text text-2xl font-black text-gray-200 mb-4">⚙️ Tetapan</h2>
+   <div class="space-y-3 w-full max-w-sm">
+    <label class="flex items-center justify-between game-card bg-white/10 p-4 text-white"><span>🔊 Bunyi</span><input type="checkbox" checked="" class="w-5 h-5"></label> 
+    <label class="flex items-center justify-between game-card bg-white/10 p-4 text-white"><span>🎵 Muzik</span><input type="checkbox" checked="" class="w-5 h-5"></label> 
+    <label class="flex items-center justify-between game-card bg-white/10 p-4 text-white"><span>📳 Getaran</span><input type="checkbox" class="w-5 h-5"></label> 
+    <label class="flex items-center justify-between game-card bg-white/10 p-4 text-white"><span>🌐 Bahasa</span><select class="bg-gray-700 text-white rounded px-2 py-1"><option>Bahasa Melayu</option><option>English</option></select></label>
+   </div>
+  </div>
+
+  <!-- RESULT SCREENS -->
+  <div id="screen-victory" class="screen items-center justify-center p-6 text-center">
+   <div class="text-6xl mb-3">🎉🏆🎉</div>
+   <p id="victory-player-greeting" class="text-yellow-100 font-bold text-sm mb-2"></p>
+   <h2 class="canva-text text-4xl font-black text-yellow-300 mb-2">MENANG!</h2>
+   <p class="text-white text-lg mb-4">Tahniah! Kamu memang pandai!</p>
+   <div class="flex gap-3">
+    <button onclick="goTo('menu')" class="game-card bg-gradient-to-r from-blue-500 to-purple-500 px-6 py-3 text-white font-bold">Menu</button> 
+    <button onclick="playAgain()" class="game-card bg-gradient-to-r from-green-500 to-emerald-500 px-6 py-3 text-white font-bold">Main Lagi</button>
+   </div>
+  </div>
+
+  <div id="screen-defeat" class="screen items-center justify-center p-6 text-center">
+   <div class="text-6xl mb-3">😢💪</div>
+   <p id="defeat-player-greeting" class="text-yellow-100 font-bold text-sm mb-2"></p>
+   <h2 class="canva-text text-4xl font-black text-red-400 mb-2">KALAH!</h2>
+   <p class="text-white text-lg mb-4">Jangan putus asa! Cuba lagi!</p>
+   <div class="flex gap-3">
+    <button onclick="goTo('menu')" class="game-card bg-gradient-to-r from-blue-500 to-purple-500 px-6 py-3 text-white font-bold">Menu</button> 
+    <button onclick="playAgain()" class="game-card bg-gradient-to-r from-orange-500 to-red-500 px-6 py-3 text-white font-bold">Cuba Lagi</button>
+   </div>
+  </div>
+
+  <div id="screen-draw" class="screen items-center justify-center p-6 text-center">
+   <div class="text-6xl mb-3">🤝⚡</div>
+   <p id="draw-player-greeting" class="text-yellow-100 font-bold text-sm mb-2"></p>
+   <h2 class="text-4xl font-black text-cyan-300 mb-2">SERI!</h2>
+   <p class="text-white text-lg mb-4">Hampir menang! Satu lagi pusingan?</p>
+   <div class="flex gap-3">
+    <button onclick="goTo('menu')" class="game-card bg-gradient-to-r from-blue-500 to-purple-500 px-6 py-3 text-white font-bold">Menu</button> 
+    <button onclick="playAgain()" class="game-card bg-gradient-to-r from-cyan-500 to-blue-500 px-6 py-3 text-white font-bold">Main Lagi</button>
+   </div>
+  </div>
+
+  <div id="screen-celebration" class="screen items-center justify-center p-6 text-center">
+   <div class="text-6xl mb-3">🌟👑🌟</div>
+   <p id="celebration-player-greeting" class="text-yellow-100 font-bold text-sm mb-2"></p>
+   <h2 class="text-3xl font-black text-yellow-200 mb-2">CHAMPION!</h2>
+   <p class="text-white text-lg mb-4">Kamu juara Jom Pandai Academy!</p>
+   <button onclick="goTo('menu')" class="game-card bg-gradient-to-r from-yellow-400 to-amber-500 px-8 py-3 text-white font-bold glow-btn">Kembali ke Menu</button>
+  </div>
+
+  <!-- Custom Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
