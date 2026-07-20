@@ -1,0 +1,928 @@
+<!doctype html>
+<html lang="ms"><head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260720-05-1e78d67"}');</script><script src="/_sdk/f432b76fb310b513.telemetry_sdk.js" integrity="sha512-9FJQ55EKmmqhyyik8BhrMVfm0+iYYfb8uOlRsjtkxJMEI97qOVEI4PnHohDjQAtvAep0IOEpdQ64eki0sz62ug=="></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jawab Express Universe</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;600;700;900&amp;display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <style>
+body{font-family:'Fira Sans',sans-serif;overflow-x:hidden}
+.stars{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.star{position:absolute;border-radius:50%;background:white;animation:twinkle var(--dur,3s) infinite alternate}
+@keyframes twinkle{0%{opacity:.15;transform:scale(.8)}100%{opacity:1;transform:scale(1.2)}}
+.shooting-star{position:absolute;width:2px;height:2px;background:white;border-radius:50%;animation:shoot 4s linear infinite;opacity:0}
+.shooting-star::after{content:'';position:absolute;top:0;right:0;width:40px;height:1px;background:linear-gradient(to left,white,transparent);transform:translateX(100%)}
+@keyframes shoot{0%{transform:translate(0,0);opacity:0}5%{opacity:1}80%{opacity:1}100%{transform:translate(-300px,200px);opacity:0}}
+.nebula-particle{position:absolute;border-radius:50%;filter:blur(40px);opacity:.12;animation:nebFloat 20s ease-in-out infinite alternate;pointer-events:none}
+@keyframes nebFloat{0%{transform:translate(0,0) scale(1)}100%{transform:translate(30px,-20px) scale(1.3)}}
+.neon-btn{box-shadow:0 0 10px currentColor,0 0 20px currentColor,inset 0 0 10px rgba(255,255,255,.1);transition:all .15s;position:relative;overflow:hidden}
+.neon-btn:hover{box-shadow:0 0 20px currentColor,0 0 40px currentColor,inset 0 0 20px rgba(255,255,255,.2);transform:scale(1.05)}
+.neon-btn:active{transform:scale(.93)}
+.neon-btn::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at var(--x,50%) var(--y,50%),rgba(255,255,255,.25),transparent 60%);opacity:0;transition:opacity .3s}
+.neon-btn:hover::after{opacity:1}
+.tactile-btn{transition:all .12s}.tactile-btn:active{transform:scale(.9) translateY(2px)}.tactile-btn:hover{filter:brightness(1.2)}
+.planet-card{transition:all .3s;border:1px solid rgba(139,92,246,.3);position:relative;overflow:hidden}
+.planet-card:hover{border-color:rgba(139,92,246,.8);box-shadow:0 0 25px rgba(139,92,246,.4);transform:translateY(-4px)}
+.crystal-glow{text-shadow:0 0 10px rgba(167,139,250,.8),0 0 30px rgba(167,139,250,.3)}
+.progress-bar{background:linear-gradient(90deg,#7c3aed,#06b6d4);border-radius:9999px;height:8px;position:relative;overflow:hidden}
+.progress-bar::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);animation:shimmer 2s infinite}
+@keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+.screen{display:none}.screen.active{display:block}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:40}
+.nav-item{transition:all .2s}.nav-item.active{color:#06b6d4;transform:scale(1.1)}
+.nav-item.active .nav-glow{box-shadow:0 -4px 12px rgba(6,182,212,.5)}
+.stat-pill{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:9999px;padding:4px 10px;font-size:12px;display:flex;align-items:center;gap:4px;backdrop-filter:blur(4px)}
+.menu-btn{background:rgba(20,15,40,.85);border:1px solid rgba(6,182,212,.15);border-radius:14px;padding:12px;text-align:center;transition:all .2s}
+.menu-btn:hover{border-color:rgba(6,182,212,.6);box-shadow:0 0 16px rgba(6,182,212,.25);transform:translateY(-2px)}
+.menu-btn:active{transform:scale(.92) translateY(1px)}
+.section-card{background:rgba(20,10,40,.85);border:1px solid rgba(139,92,246,.2);border-radius:16px;padding:20px;margin-bottom:12px;backdrop-filter:blur(4px)}
+.rank-badge{display:inline-flex;align-items:center;gap:4px;padding:4px 12px;border-radius:9999px;font-size:12px;font-weight:600}
+.flow-track{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.flow-step{position:relative;padding:10px 6px;border:1px solid rgba(6,182,212,.25);border-radius:12px;background:rgba(20,10,40,.7);text-align:center;font-size:10px;animation:stepGlow 3s infinite alternate}
+@keyframes stepGlow{from{box-shadow:0 0 4px rgba(6,182,212,.1)}to{box-shadow:0 0 14px rgba(124,58,237,.4)}}
+.rocket-float{position:absolute;animation:rocketDrift 12s ease-in-out infinite;pointer-events:none;font-size:1.5rem;opacity:.7}
+@keyframes rocketDrift{0%{transform:translate(0,0) rotate(-15deg)}50%{transform:translate(80px,10px) rotate(-20deg)}100%{transform:translate(0,0) rotate(-15deg)}}
+.coin-float{position:absolute;animation:coinBob 3s ease-in-out infinite;pointer-events:none;font-size:1.2rem}
+@keyframes coinBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.breathing{animation:breathe 2.8s ease-in-out infinite}
+@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+.hero-idle{animation:heroIdle 4s ease-in-out infinite}
+@keyframes heroIdle{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-6px) scale(1.04)}}
+.pet-bounce{animation:petB 2.2s ease-in-out infinite}
+@keyframes petB{0%,100%{transform:translateY(0) rotate(-3deg)}30%{transform:translateY(-8px) rotate(3deg)}}
+.pet-play{animation:petPlay 5s ease-in-out infinite}
+@keyframes petPlay{0%,100%{transform:translate(0,0)}40%{transform:translate(-5px,3px)}80%{transform:translate(-3px,5px)}}
+.coin-spin{display:inline-block;animation:coinSpin 1.8s linear infinite}
+@keyframes coinSpin{50%{transform:rotateY(180deg)}}
+.reward-overlay{position:fixed;inset:0;z-index:55;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.8);backdrop-filter:blur(6px);animation:fadeIn .3s}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.chest-anim{animation:chestOpen .8s ease-out}
+@keyframes chestOpen{0%{transform:scale(.5);opacity:0}60%{transform:scale(1.15);opacity:1}100%{transform:scale(1);opacity:1}}
+.diamond-fly{animation:diamondFly 1s ease-out forwards}
+@keyframes diamondFly{0%{transform:translateY(0);opacity:1}100%{transform:translateY(-80px) scale(.5);opacity:0}}
+.levelup-overlay{position:fixed;inset:0;z-index:58;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(0,0,0,.85);backdrop-filter:blur(8px)}
+.levelup-text{font-size:3rem;font-weight:900;background:linear-gradient(135deg,#fbbf24,#f472b6,#7c3aed,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:levelPulse 1s ease-in-out infinite alternate}
+@keyframes levelPulse{0%{transform:scale(1)}100%{transform:scale(1.1)}}
+.confetti{position:absolute;width:8px;height:8px;border-radius:2px;animation:confettiFall 2s ease-out forwards}
+@keyframes confettiFall{0%{transform:translateY(0) rotate(0);opacity:1}100%{transform:translateY(300px) rotate(720deg);opacity:0}}
+.loading-screen{position:fixed;inset:0;z-index:70;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,#0a0a2e,#1a0533,#0d1b2a);transition:opacity .5s}
+.loading-screen.fade-out{opacity:0;pointer-events:none}
+.loading-dots span{display:inline-block;width:10px;height:10px;margin:0 4px;border-radius:50%;background:#06b6d4;animation:loadDot 1.2s ease-in-out infinite}
+.loading-dots span:nth-child(2){animation-delay:.2s}
+.loading-dots span:nth-child(3){animation-delay:.4s}
+@keyframes loadDot{0%,100%{transform:scale(.6);opacity:.4}50%{transform:scale(1.2);opacity:1}}
+.cutscene-overlay{position:fixed;inset:0;z-index:60;background:black;display:flex;flex-direction:column;align-items:center;justify-content:center;animation:fadeIn .5s}
+.cutscene-text{animation:typeIn 2s steps(30) forwards;overflow:hidden;white-space:nowrap;border-right:2px solid #06b6d4;max-width:90%}
+@keyframes typeIn{from{width:0}to{width:100%}}
+.env-clouds{position:absolute;top:10%;left:-20%;white-space:nowrap;opacity:.15;animation:cloudDrift 30s linear infinite;pointer-events:none;font-size:2rem}
+@keyframes cloudDrift{to{transform:translateX(140%)}}
+.glow-pulse{animation:glowP 1.5s ease-in-out infinite}
+@keyframes glowP{0%,100%{box-shadow:0 0 8px rgba(6,182,212,.3)}50%{box-shadow:0 0 24px rgba(6,182,212,.7)}}
+.confetti-burst{animation:burst .8s ease-out both}
+@keyframes burst{0%{transform:scale(.4);opacity:0}70%{transform:scale(1.15);opacity:1}100%{transform:scale(1);opacity:0}}
+.rainbow-arc{position:absolute;top:-20px;right:-20px;width:80px;height:40px;border-radius:80px 80px 0 0;background:conic-gradient(from 180deg,red,orange,yellow,green,cyan,blue,violet,red);opacity:.15;animation:rainbowFade 8s ease-in-out infinite alternate;pointer-events:none}
+@keyframes rainbowFade{0%{opacity:.08;transform:scale(.9)}100%{opacity:.2;transform:scale(1.1)}}
+.modal-overlay{backdrop-filter:blur(8px)}
+</style>
+  <script src="/_sdk/e3937a0574eb2d69.data_sdk.js" type="text/javascript" integrity="sha512-xbp/ACqEQy1aDxYMtXTrR3y5MUbzxuggRR/9sD48Gl4VhLMMCiAHsxMaFV6DTdeBpR6ymF+t2zhPKYkWM3+Jfw=="></script>
+  <script src="/_sdk/9432170dbd2ae0df.resizing_sdk.js" type="text/javascript" integrity="sha512-FeT+58sb1f9ejWPWFjCbJvTT+SDwGV+ngrHUnlO7TWEOoqwOLj6p256kO3vOL7DIWl1cIgrobiof8v2bOigwPg=="></script>
+ </head>
+ <body data-template-id="__page-root" class="text-white relative" style="min-height: calc(100 * min(var(--vh,1vh),1vh)); background: linear-gradient(135deg, rgb(10, 10, 46), rgb(26, 5, 51), rgb(13, 27, 42));"><!-- Loading Screen -->
+  <div id="loading-screen" class="loading-screen">
+   <div class="text-5xl hero-idle mb-4">
+    🦸
+   </div>
+   <div class="text-lg font-bold text-cyan-300 mb-2">
+    Memuatkan Universe...
+   </div>
+   <div class="loading-dots mb-4">
+    <span></span><span></span><span></span>
+   </div>
+   <p id="loading-tip" class="text-xs text-purple-300 max-w-xs text-center px-4"></p>
+  </div><!-- Starfield & Nebula -->
+  <div class="stars" id="starfield"></div>
+  <div id="nebula-layer" class="fixed inset-0 pointer-events-none z-0 overflow-hidden"></div><!-- Resume Prompt -->
+  <div id="resume-prompt" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4" role="dialog" aria-modal="true">
+   <div class="section-card max-w-sm w-full text-center">
+    <h2 class="text-xl font-bold text-cyan-300">Teruskan Pengembaraan?</h2>
+    <p class="text-xs text-purple-200 mt-2">Checkpoint terakhir disimpan</p>
+    <div class="flex gap-2 justify-center mt-4"><button class="neon-btn tactile-btn px-4 py-2 rounded-full text-cyan-300" onclick="resumeAdventure()">Teruskan</button> <button class="px-4 py-2 rounded-full bg-white/10 tactile-btn" onclick="dismissResume()">Mula Semula</button>
+    </div>
+   </div>
+  </div><!-- Welcome Modal -->
+  <div id="welcome-modal" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4">
+   <div data-template-id="welcome-panel" class="canva-panel relative max-w-lg w-full rounded-2xl p-8 text-center border border-purple-500/50" style="background: linear-gradient(135deg, rgba(30, 10, 60, 0.95), rgba(10, 20, 50, 0.95));">
+    <div class="text-5xl mb-4 coin-spin">
+     💎
+    </div>
+    <h1 data-template-id="welcome-title" class="canva-text text-2xl font-bold mb-2 crystal-glow" style="color: rgb(196, 181, 253); font-weight: 900; font-style: normal; font-size: 32px;">💎 JAWAB EXPRESS UNIVERSE</h1>
+    <p data-template-id="welcome-message" class="canva-text text-purple-200 mb-6 leading-relaxed" style="color: rgb(233, 213, 255); font-weight: 400; font-style: normal; font-size: 16px;">Selamat datang, Express Ranger! Misi anda hari ini ialah memulihkan Planet Ilmu dan mengumpulkan semula Core Crystal Universe!</p><button data-template-id="start-btn" class="canva-button neon-btn tactile-btn px-8 py-3 rounded-full font-bold text-lg" onclick="closeModal()" style="background: linear-gradient(135deg, rgb(124, 58, 237), rgb(6, 182, 212)); color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">🚀 Mula Pengembaraan</button>
+   </div>
+  </div><!-- Reward Overlay -->
+  <div id="reward-overlay" class="reward-overlay hidden">
+   <div class="text-center">
+    <div class="text-6xl chest-anim mb-4" id="reward-chest">
+     🧰
+    </div>
+    <div id="reward-items" class="flex gap-3 justify-center mb-4"></div>
+    <p id="reward-text" class="text-lg font-bold text-yellow-300 mb-4"></p><button class="neon-btn tactile-btn px-6 py-2 rounded-full text-cyan-300" onclick="closeReward()">✨ Terima</button>
+   </div>
+  </div><!-- Level Up Overlay -->
+  <div id="levelup-overlay" class="levelup-overlay hidden">
+   <div id="confetti-container" class="absolute inset-0 overflow-hidden pointer-events-none"></div>
+   <div class="levelup-text mb-4">
+    ⬆️ LEVEL UP!
+   </div>
+   <p id="levelup-detail" class="text-lg text-cyan-300 font-bold mb-4"></p><button class="neon-btn tactile-btn px-6 py-2 rounded-full text-cyan-300" onclick="closeLevelUp()">🎉 Teruskan!</button>
+  </div><!-- Cutscene Overlay -->
+  <div id="cutscene-overlay" class="cutscene-overlay hidden">
+   <div class="text-5xl mb-6" id="cutscene-icon">
+    🌀
+   </div>
+   <p id="cutscene-text-el" class="cutscene-text text-cyan-200 text-lg font-bold"></p><button class="neon-btn tactile-btn px-6 py-2 rounded-full text-cyan-300 mt-6" onclick="closeCutscene()">Teruskan →</button>
+  </div><!-- Main App -->
+  <div class="relative z-10 pb-20"><!-- SCREEN: HOME -->
+   <div id="screen-home" class="screen active">
+    <div class="relative overflow-hidden">
+     <div class="rocket-float" style="top:8%;left:15%">
+      🚀
+     </div>
+     <div class="rocket-float" style="top:18%;right:10%;animation-delay:-4s;animation-duration:15s">
+      🛸
+     </div>
+     <div class="coin-float" style="top:12%;right:30%">
+      🪙
+     </div>
+     <div class="coin-float" style="top:22%;left:40%;animation-delay:-1.5s">
+      ✨
+     </div>
+     <header class="text-center pt-6 pb-2 px-4 relative">
+      <h1 data-template-id="main-title" class="canva-text text-3xl md:text-4xl font-black tracking-wide crystal-glow" style="color: rgb(233, 213, 255); font-weight: 900; font-style: normal; font-size: 32px;">JAWAB EXPRESS UNIVERSE</h1>
+      <p data-template-id="subtitle" class="canva-text text-cyan-300 text-sm mt-1" style="color: rgb(103, 232, 249); font-weight: 600; font-style: normal; font-size: 16px;">The Ultimate Learning Adventure</p>
+      <p data-template-id="tagline" class="canva-text text-purple-300 italic text-xs mt-1" style="color: rgb(196, 181, 253); font-weight: 400; font-style: italic; font-size: 16px;">Setiap Jawapan Membuka Sebuah Dunia Baharu!</p>
+     </header>
+     <div class="flex justify-center gap-6 py-4 relative">
+      <div class="text-center">
+       <div class="w-24 h-24 rounded-full bg-gradient-to-br from-purple-600 to-cyan-500 flex items-center justify-center text-4xl border-2 border-purple-400 hero-idle shadow-lg shadow-purple-500/30">
+        🦸
+       </div>
+       <p class="text-xs mt-1 text-purple-200">Hero Lv.8</p>
+      </div>
+      <div class="text-center">
+       <div class="rounded-full bg-gradient-to-br from-orange-500 to-pink-500 flex items-center justify-center text-3xl border-2 border-orange-300 pet-play shadow-lg shadow-orange-500/20" style="width:4.5rem;height:4.5rem">
+        🐉
+       </div>
+       <p class="text-xs mt-1 text-orange-200">Pet Lv.5</p>
+      </div>
+     </div>
+    </div><!-- Adventure Loop -->
+    <div class="max-w-2xl mx-auto px-4 mb-3">
+     <div class="section-card">
+      <div class="flex items-center justify-between mb-2">
+       <h2 class="text-sm font-bold text-cyan-300">🚀 Kitaran Pengembaraan</h2><span id="lives-display" class="text-sm">❤️❤️❤️❤️❤️</span>
+      </div>
+      <div class="flow-track">
+       <div class="flow-step">
+        🏠 Home
+       </div>
+       <div class="flow-step">
+        🎁 Daily
+       </div>
+       <div class="flow-step">
+        🎯 Mission
+       </div>
+       <div class="flow-step">
+        🗺️ Galaxy
+       </div>
+       <div class="flow-step">
+        🦸 Hero
+       </div>
+       <div class="flow-step">
+        🐾 Pet
+       </div>
+       <div class="flow-step">
+        🌍 Planet
+       </div>
+       <div class="flow-step">
+        ⚡ Stage
+       </div>
+       <div class="flow-step">
+        🏆 Reward
+       </div>
+       <div class="flow-step">
+        ⬆️ Level
+       </div>
+       <div class="flow-step">
+        🧰 Treasure
+       </div>
+       <div class="flow-step">
+        ↩️ Galaxy
+       </div>
+      </div>
+     </div>
+    </div><!-- Stats -->
+    <div class="flex flex-wrap justify-center gap-2 px-4 py-3">
+     <div class="stat-pill">
+      🪙 <span id="coin-display">12,450</span>
+     </div>
+     <div class="stat-pill">
+      💎 <span id="diamond-display">85</span>
+     </div>
+     <div class="stat-pill">
+      ⚡ <span id="energy-display">28/30</span>
+     </div>
+     <div class="stat-pill">
+      ⭐ <span id="xp-display">Lv.14</span>
+     </div>
+     <div class="stat-pill">
+      🏅 <span id="rank-display">Gold III</span>
+     </div>
+    </div><!-- Quick Access -->
+    <div class="max-w-md mx-auto px-4 mb-4">
+     <div class="grid grid-cols-4 gap-2"><button class="menu-btn tactile-btn" onclick="showScreen('stage-demo')">
+       <div class="text-xl">
+        ⚡
+       </div>
+       <div class="text-[10px] mt-1">
+        Stage
+       </div></button> <button class="menu-btn tactile-btn" onclick="showScreen('galaxy')">
+       <div class="text-xl">
+        🗺️
+       </div>
+       <div class="text-[10px] mt-1">
+        Galaxy
+       </div></button> <button class="menu-btn tactile-btn" onclick="showScreen('subject')">
+       <div class="text-xl">
+        📚
+       </div>
+       <div class="text-[10px] mt-1">
+        Subject
+       </div></button> <button class="menu-btn tactile-btn" onclick="showScreen('pass')">
+       <div class="text-xl">
+        🎫
+       </div>
+       <div class="text-[10px] mt-1">
+        Pass
+       </div></button>
+     </div>
+    </div><!-- Daily Streak -->
+    <div class="max-w-md mx-auto px-4 mb-4">
+     <div class="section-card">
+      <h3 class="text-sm font-bold text-yellow-300 mb-2">🔥 Streak Harian — Hari ke-4</h3>
+      <div class="flex gap-2 overflow-x-auto text-center text-[10px] pb-1">
+       <div class="flex-shrink-0 w-14 p-2 rounded-lg bg-green-900/50 border border-green-500/50">
+        <div>
+         Hari 1
+        </div>
+        <div class="text-green-300">
+         ✅🪙
+        </div>
+       </div>
+       <div class="flex-shrink-0 w-14 p-2 rounded-lg bg-green-900/50 border border-green-500/50">
+        <div>
+         Hari 3
+        </div>
+        <div class="text-green-300">
+         ✅⭐
+        </div>
+       </div>
+       <div class="flex-shrink-0 w-14 p-2 rounded-lg bg-yellow-900/50 border border-yellow-500/50 glow-pulse">
+        <div>
+         Hari 7
+        </div>
+        <div class="text-yellow-300">
+         🦸
+        </div>
+       </div>
+       <div class="flex-shrink-0 w-14 p-2 rounded-lg bg-white/5 border border-white/10">
+        <div>
+         Hari 30
+        </div>
+        <div class="text-purple-300">
+         👑
+        </div>
+       </div>
+      </div>
+     </div>
+    </div><!-- Galaxy Progress -->
+    <div class="max-w-md mx-auto px-4 mb-4">
+     <div class="section-card">
+      <h3 class="text-sm font-bold text-purple-300 mb-2">🌌 Progres Galaxy</h3>
+      <div class="bg-white/10 rounded-full overflow-hidden mb-1">
+       <div class="progress-bar" style="width:18%"></div>
+      </div>
+      <p class="text-xs text-purple-400">2/12 Planet • 15% Crystal</p>
+     </div>
+    </div>
+   </div><!-- SCREEN: SUBJECT -->
+   <div id="screen-subject" class="screen">
+    <div class="p-4 max-w-lg mx-auto"><button onclick="showScreen('home')" class="text-cyan-400 text-sm mb-3 tactile-btn">← Kembali</button>
+     <h2 data-template-id="subject-title" class="canva-text text-xl font-bold text-center mb-4 crystal-glow" style="color: rgb(233, 213, 255); font-weight: 700; font-style: normal; font-size: 24px;">📚 Subject Planet System</h2>
+     <p class="text-xs text-purple-200 text-center mb-4">Darjah 1 – Darjah 6 • Level 1–100 setiap subjek</p><!-- Subject cards -->
+     <div class="space-y-3">
+      <div class="section-card">
+       <div class="flex justify-between items-center">
+        <span>🔢 Matematik</span><span class="text-xs text-cyan-300">Lv.23/100</span>
+       </div>
+       <div class="bg-white/10 rounded-full overflow-hidden mt-2">
+        <div class="progress-bar" style="width:23%"></div>
+       </div>
+       <p class="text-[10px] text-purple-400 mt-1">Darjah 1 • Crystal Challenge aktif</p>
+      </div>
+      <div class="section-card">
+       <div class="flex justify-between items-center">
+        <span>🗣️ Bahasa Melayu</span><span class="text-xs text-cyan-300">Lv.18/100</span>
+       </div>
+       <div class="bg-white/10 rounded-full overflow-hidden mt-2">
+        <div class="progress-bar" style="width:18%"></div>
+       </div>
+       <p class="text-[10px] text-purple-400 mt-1">Darjah 1 • Guardian Test aktif</p>
+      </div>
+      <div class="section-card">
+       <div class="flex justify-between items-center">
+        <span>🇬🇧 English</span><span class="text-xs text-cyan-300">Lv.12/100</span>
+       </div>
+       <div class="bg-white/10 rounded-full overflow-hidden mt-2">
+        <div class="progress-bar" style="width:12%"></div>
+       </div>
+       <p class="text-[10px] text-purple-400 mt-1">Darjah 1 • Knowledge Battle aktif</p>
+      </div>
+      <div class="section-card">
+       <div class="flex justify-between items-center">
+        <span>🔬 Sains</span><span class="text-xs text-cyan-300">Lv.9/100</span>
+       </div>
+       <div class="bg-white/10 rounded-full overflow-hidden mt-2">
+        <div class="progress-bar" style="width:9%"></div>
+       </div>
+       <p class="text-[10px] text-purple-400 mt-1">Darjah 1 • Power Mission aktif</p>
+      </div>
+     </div><!-- Subject Systems -->
+     <div class="section-card mt-4">
+      <h3 class="text-sm font-bold text-yellow-300 mb-2">🏆 Sistem Subjek</h3>
+      <div class="grid grid-cols-2 gap-2 text-[10px]">
+       <div class="rounded-lg bg-purple-900/30 border border-purple-500/20 p-2">
+        <p class="font-bold text-purple-300">🌀 Portal Progression</p>
+        <p class="text-purple-200">Buka portal baharu setiap level</p>
+       </div>
+       <div class="rounded-lg bg-cyan-900/30 border border-cyan-500/20 p-2">
+        <p class="font-bold text-cyan-300">🎁 Learning Rewards</p>
+        <p class="text-purple-200">Coin, XP, Crystal setiap stage</p>
+       </div>
+       <div class="rounded-lg bg-yellow-900/30 border border-yellow-500/20 p-2">
+        <p class="font-bold text-yellow-300">🔥 Learning Combo</p>
+        <p class="text-purple-200">Combo streak x2, x3 bonus</p>
+       </div>
+       <div class="rounded-lg bg-green-900/30 border border-green-500/20 p-2">
+        <p class="font-bold text-green-300">💡 Hint &amp; Support</p>
+        <p class="text-purple-200">Bantuan pintar setiap cabaran</p>
+       </div>
+       <div class="rounded-lg bg-pink-900/30 border border-pink-500/20 p-2">
+        <p class="font-bold text-pink-300">👑 Master Titles</p>
+        <p class="text-purple-200">Gelaran khas setiap pencapaian</p>
+       </div>
+       <div class="rounded-lg bg-blue-900/30 border border-blue-500/20 p-2">
+        <p class="font-bold text-blue-300">🏅 Subject Achievements</p>
+        <p class="text-purple-200">Badge &amp; Trophy unik</p>
+       </div>
+       <div class="rounded-lg bg-orange-900/30 border border-orange-500/20 p-2">
+        <p class="font-bold text-orange-300">📖 Progress Book</p>
+        <p class="text-purple-200">Rekod kemajuan lengkap</p>
+       </div>
+       <div class="rounded-lg bg-red-900/30 border border-red-500/20 p-2">
+        <p class="font-bold text-red-300">⚔️ Subject Battle</p>
+        <p class="text-purple-200">Cabaran antara subjek</p>
+       </div>
+      </div>
+     </div>
+     <div class="section-card mt-3">
+      <h3 class="text-sm font-bold text-cyan-300 mb-2">📜 Lagi Sistem</h3>
+      <div class="grid grid-cols-2 gap-2 text-[10px]">
+       <div class="rounded-lg bg-white/5 border border-white/10 p-2">
+        <p class="font-bold text-white">📋 Certificate System</p>
+        <p class="text-purple-200">Sijil digital setiap peringkat</p>
+       </div>
+       <div class="rounded-lg bg-white/5 border border-white/10 p-2">
+        <p class="font-bold text-white">🔄 Reset &amp; Progress</p>
+        <p class="text-purple-200">Peraturan reset &amp; simpan</p>
+       </div>
+       <div class="rounded-lg bg-white/5 border border-white/10 p-2">
+        <p class="font-bold text-white">📚 Silibus System</p>
+        <p class="text-purple-200">Mengikut silibus KSSR</p>
+       </div>
+       <div class="rounded-lg bg-white/5 border border-white/10 p-2">
+        <p class="font-bold text-white">⭐ Grade D1–D6</p>
+        <p class="text-purple-200">Darjah 1 hingga Darjah 6</p>
+       </div>
+      </div>
+     </div><!-- Mission Labels -->
+     <div class="section-card mt-3">
+      <h3 class="text-sm font-bold text-green-300 mb-2">🎯 Knowledge Mission</h3>
+      <div class="flex flex-wrap gap-2 text-[10px]"><span class="px-2 py-1 rounded-full bg-purple-900/50 border border-purple-500/30 text-purple-200">💎 Crystal Challenge</span> <span class="px-2 py-1 rounded-full bg-cyan-900/50 border border-cyan-500/30 text-cyan-200">🛡️ Guardian Test</span> <span class="px-2 py-1 rounded-full bg-red-900/50 border border-red-500/30 text-red-200">⚔️ Knowledge Battle</span> <span class="px-2 py-1 rounded-full bg-yellow-900/50 border border-yellow-500/30 text-yellow-200">⚡ Power Mission</span>
+      </div>
+     </div>
+    </div>
+   </div><!-- SCREEN: STAGE DEMO -->
+   <div id="screen-stage-demo" class="screen">
+    <div class="p-4 max-w-lg mx-auto"><button onclick="showScreen('home')" class="text-cyan-400 text-sm mb-3 tactile-btn">← Kembali</button>
+     <h2 class="text-xl font-bold text-center mb-4 crystal-glow">⚡ Stage Demo</h2>
+     <div class="section-card text-center relative overflow-hidden">
+      <div class="env-clouds">
+       🍃 ⭐ ☁️ ✨
+      </div>
+      <div class="rainbow-arc"></div>
+      <div class="flex justify-between items-center mb-3"><span id="stage-lives" class="text-sm">❤️❤️❤️❤️❤️</span> <span id="stage-combo" class="text-xs text-yellow-300">🔥 Combo: 0</span> <span id="stage-stars" class="text-xs">⭐⭐⭐</span>
+      </div>
+      <div class="bg-white/5 rounded-xl p-4 min-h-[200px] flex items-center justify-center" id="stage-area">
+       <p id="stage-text" class="text-lg font-bold text-cyan-200">Tekan "Mula Stage" untuk bermain!</p>
+      </div>
+      <div class="mt-3 flex gap-2 justify-center"><button class="neon-btn tactile-btn px-4 py-2 rounded-full text-cyan-300 text-sm" onclick="startStage()" id="stage-start-btn">🚀 Mula Stage</button>
+      </div>
+     </div>
+    </div>
+   </div><!-- SCREEN: GALAXY MAP -->
+   <div id="screen-galaxy" class="screen">
+    <div class="p-4 relative"><button onclick="showScreen('home')" class="text-cyan-400 text-sm mb-3 tactile-btn">← Kembali</button>
+     <h2 data-template-id="galaxy-title" class="canva-text text-2xl font-bold text-center mb-4 crystal-glow" style="color: rgb(103, 232, 249); font-weight: 700; font-style: normal; font-size: 24px;">🗺️ Peta Galaksi</h2><button data-template-id="open-planet-system-btn" class="canva-button neon-btn tactile-btn w-full mb-4 py-2 rounded-full font-bold" onclick="showScreen('planet-system')" style="background: linear-gradient(135deg, rgb(124, 58, 237), rgb(6, 182, 212)); color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">🪐 Teroka Planet System</button>
+     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+      <div data-template-id="planet-number" class="canva-card planet-card rounded-xl p-3 text-center cursor-pointer" style="background: rgba(20, 10, 50, 0.8);">
+       <div class="text-2xl mb-1">
+        🔢
+       </div>
+       <p data-template-id="planet-number-name" class="canva-text font-semibold text-xs" style="color: rgb(251, 191, 36); font-weight: 400; font-style: normal; font-size: 16px;">Number Planet</p>
+       <p class="text-[10px] text-green-400 mt-1">✅ Selesai</p>
+      </div>
+      <div data-template-id="planet-language" class="canva-card planet-card rounded-xl p-3 text-center cursor-pointer" style="background: rgba(20, 10, 50, 0.8);">
+       <div class="text-2xl mb-1">
+        🗣️
+       </div>
+       <p data-template-id="planet-language-name" class="canva-text font-semibold text-xs" style="color: rgb(167, 139, 250); font-weight: 400; font-style: normal; font-size: 16px;">Language Planet</p>
+       <p class="text-[10px] text-cyan-400 mt-1">▶ 12/20</p>
+      </div>
+      <div data-template-id="planet-english" class="canva-card planet-card rounded-xl p-3 text-center cursor-pointer" style="background: rgba(20, 10, 50, 0.8);">
+       <div class="text-2xl mb-1">
+        🇬🇧
+       </div>
+       <p data-template-id="planet-english-name" class="canva-text font-semibold text-xs" style="color: rgb(96, 165, 250); font-weight: 400; font-style: normal; font-size: 16px;">English Planet</p>
+       <p class="text-[10px] text-gray-400 mt-1">🔒</p>
+      </div>
+      <div data-template-id="planet-science" class="canva-card planet-card rounded-xl p-3 text-center cursor-pointer" style="background: rgba(20, 10, 50, 0.8);">
+       <div class="text-2xl mb-1">
+        🔬
+       </div>
+       <p data-template-id="planet-science-name" class="canva-text font-semibold text-xs" style="color: rgb(52, 211, 153); font-weight: 400; font-style: normal; font-size: 16px;">Science Planet</p>
+       <p class="text-[10px] text-gray-400 mt-1">🔒</p>
+      </div>
+      <div data-template-id="planet-candy" class="canva-card planet-card rounded-xl p-3 text-center cursor-pointer" style="background: rgba(20, 10, 50, 0.8);">
+       <div class="text-2xl mb-1">
+        🍬
+       </div>
+       <p data-template-id="planet-candy-name" class="canva-text font-semibold text-xs" style="color: rgb(244, 114, 182); font-weight: 400; font-style: normal; font-size: 16px;">Candy Planet</p>
+       <p class="text-[10px] text-gray-400 mt-1">🔒</p>
+      </div>
+      <div data-template-id="planet-toy" class="canva-card planet-card rounded-xl p-3 text-center cursor-pointer" style="background: rgba(20, 10, 50, 0.8);">
+       <div class="text-2xl mb-1">
+        🧸
+       </div>
+       <p data-template-id="planet-toy-name" class="canva-text font-semibold text-xs" style="color: rgb(251, 146, 60); font-weight: 400; font-style: normal; font-size: 16px;">Toy Planet</p>
+       <p class="text-[10px] text-gray-400 mt-1">🔒</p>
+      </div>
+      <div data-template-id="planet-volcano" class="canva-card planet-card rounded-xl p-3 text-center cursor-pointer" style="background: rgba(20, 10, 50, 0.8);">
+       <div class="text-2xl mb-1">
+        🌋
+       </div>
+       <p data-template-id="planet-volcano-name" class="canva-text font-semibold text-xs" style="color: rgb(239, 68, 68); font-weight: 400; font-style: normal; font-size: 16px;">Volcano Planet</p>
+       <p class="text-[10px] text-gray-400 mt-1">🔒</p>
+      </div>
+      <div data-template-id="planet-ice" class="canva-card planet-card rounded-xl p-3 text-center cursor-pointer" style="background: rgba(20, 10, 50, 0.8);">
+       <div class="text-2xl mb-1">
+        🧊
+       </div>
+       <p data-template-id="planet-ice-name" class="canva-text font-semibold text-xs" style="color: rgb(147, 197, 253); font-weight: 400; font-style: normal; font-size: 16px;">Ice Planet</p>
+       <p class="text-[10px] text-gray-400 mt-1">🔒</p>
+      </div>
+      <div data-template-id="planet-sky" class="canva-card planet-card rounded-xl p-3 text-center cursor-pointer" style="background: rgba(20, 10, 50, 0.8);">
+       <div class="text-2xl mb-1">
+        ☁️
+       </div>
+       <p data-template-id="planet-sky-name" class="canva-text font-semibold text-xs" style="color: rgb(165, 243, 252); font-weight: 400; font-style: normal; font-size: 16px;">Sky Planet</p>
+       <p class="text-[10px] text-gray-400 mt-1">🔒</p>
+      </div>
+      <div data-template-id="planet-station" class="canva-card planet-card rounded-xl p-3 text-center cursor-pointer" style="background: rgba(20, 10, 50, 0.8);">
+       <div class="text-2xl mb-1">
+        🚀
+       </div>
+       <p data-template-id="planet-station-name" class="canva-text font-semibold text-xs" style="color: rgb(252, 211, 77); font-weight: 400; font-style: normal; font-size: 16px;">Galaxy Station</p>
+       <p class="text-[10px] text-gray-400 mt-1">🔒</p>
+      </div>
+      <div data-template-id="planet-nebula" class="canva-card planet-card rounded-xl p-3 text-center cursor-pointer" style="background: rgba(20, 10, 50, 0.8);">
+       <div class="text-2xl mb-1">
+        🌌
+       </div>
+       <p data-template-id="planet-nebula-name" class="canva-text font-semibold text-xs" style="color: rgb(192, 132, 252); font-weight: 400; font-style: normal; font-size: 16px;">Nebula Planet</p>
+       <p class="text-[10px] text-gray-400 mt-1">🔒</p>
+      </div>
+      <div data-template-id="planet-void" class="canva-card planet-card rounded-xl p-3 text-center cursor-pointer" style="background: rgba(30, 5, 20, 0.9);">
+       <div class="text-2xl mb-1">
+        👑
+       </div>
+       <p data-template-id="planet-void-name" class="canva-text font-semibold text-xs" style="color: rgb(248, 113, 113); font-weight: 400; font-style: normal; font-size: 16px;">Void Kingdom</p>
+       <p class="text-[10px] text-red-400 mt-1">⚠️ Final Boss</p>
+      </div>
+     </div>
+    </div>
+   </div><!-- SCREEN: PLANET SYSTEM -->
+   <div id="screen-planet-system" class="screen">
+    <div class="p-4 max-w-2xl mx-auto"><button onclick="showScreen('galaxy')" class="text-cyan-400 text-sm mb-3 tactile-btn">← Kembali</button>
+     <h2 data-template-id="planet-system-title" class="canva-text text-2xl font-bold text-center mb-2 crystal-glow" style="color: rgb(233, 213, 255); font-weight: 700; font-style: normal; font-size: 24px;">🪐 Planet System</h2>
+     <p data-template-id="planet-system-intro" class="canva-text text-xs text-purple-200 text-center mb-4" style="color: rgb(216, 180, 254); font-weight: 400; font-style: normal; font-size: 16px;">Jelajah dunia hidup, bantu NPC, temui Guardian, dan pulihkan Crystal Universe.</p>
+     <div class="grid sm:grid-cols-2 gap-3">
+      <div class="section-card">
+       <h3 data-template-id="planet-stage-title" class="canva-text text-sm font-bold text-yellow-300 mb-2" style="color: rgb(251, 191, 36); font-weight: 700; font-style: normal; font-size: 19px;">🎯 20 Stage Setiap Planet</h3>
+       <p data-template-id="planet-stage-text" class="canva-text text-xs" style="color: rgb(233, 213, 255); font-weight: 400; font-style: normal; font-size: 16px;">Stage 1–5 Easy • 6–10 Medium • 11–15 Hard • 16–19 Elite • Stage 20 Boss Battle.</p>
+      </div>
+      <div class="section-card">
+       <h3 data-template-id="planet-rank-title" class="canva-text text-sm font-bold text-yellow-300 mb-2" style="color: rgb(251, 191, 36); font-weight: 700; font-style: normal; font-size: 19px;">⭐ Planet Rank</h3>
+       <p data-template-id="planet-rank-text" class="canva-text text-xs" style="color: rgb(254, 243, 199); font-weight: 400; font-style: normal; font-size: 16px;">1–5 bintang. 5 bintang memerlukan semua stage, treasure, misi dan hidden area ditemui.</p>
+      </div>
+      <div class="section-card">
+       <h3 data-template-id="planet-guardian-title" class="canva-text text-sm font-bold text-cyan-300 mb-2" style="color: rgb(103, 232, 249); font-weight: 700; font-style: normal; font-size: 19px;">🛡️ Guardian Knowledge Keeper</h3>
+       <p data-template-id="planet-guardian-text" class="canva-text text-xs" style="color: rgb(207, 250, 254); font-weight: 400; font-style: normal; font-size: 16px;">Guardian memberi dialog, hint, ganjaran dan Crystal. Temui mereka untuk memahami cerita setiap dunia.</p>
+      </div>
+      <div class="section-card">
+       <h3 data-template-id="planet-npcs-title" class="canva-text text-sm font-bold text-pink-300 mb-2" style="color: rgb(249, 168, 212); font-weight: 700; font-style: normal; font-size: 19px;">🤖 NPC &amp; Portal</h3>
+       <p data-template-id="planet-npcs-text" class="canva-text text-xs" style="color: rgb(252, 231, 243); font-weight: 400; font-style: normal; font-size: 16px;">Scientist, chef, robot, panda, alien, pirate dan wizard menawarkan misi dan portal ke mini game.</p>
+      </div>
+      <div class="section-card">
+       <h3 data-template-id="planet-interactions-title" class="canva-text text-sm font-bold text-green-300 mb-2" style="color: rgb(134, 239, 172); font-weight: 700; font-style: normal; font-size: 19px;">✨ Dunia Interaktif</h3>
+       <p data-template-id="planet-interactions-text" class="canva-text text-xs" style="color: rgb(220, 252, 231); font-weight: 400; font-style: normal; font-size: 16px;">Ketuk pokok, pecahkan batu, selidik rumput, buka tong, tolak kotak — dunia hidup menanti!</p>
+      </div>
+     </div>
+    </div>
+   </div><!-- SCREEN: BATTLE -->
+   <div id="screen-battle" class="screen">
+    <div class="p-4"><button onclick="showScreen('home')" class="text-cyan-400 text-sm mb-3 tactile-btn">← Kembali</button>
+     <h2 data-template-id="battle-title" class="canva-text text-xl font-bold text-center mb-4" style="color: rgb(252, 165, 165); font-weight: 700; font-style: normal; font-size: 24px;">⚔️ Battle Arena</h2>
+     <div class="space-y-3 max-w-md mx-auto">
+      <div class="section-card flex items-center gap-3 tactile-btn cursor-pointer">
+       <span class="text-2xl">⚔️</span>
+       <div>
+        <p class="font-bold text-sm">Solo Battle</p>
+        <p class="text-xs text-gray-400">Jawab soalan lawan AI</p>
+       </div>
+      </div>
+      <div class="section-card flex items-center gap-3 tactile-btn cursor-pointer">
+       <span class="text-2xl">🤺</span>
+       <div>
+        <p class="font-bold text-sm">Duel 1v1</p>
+        <p class="text-xs text-gray-400">Cabaran masa nyata</p>
+       </div>
+      </div>
+      <div class="section-card flex items-center gap-3 tactile-btn cursor-pointer">
+       <span class="text-2xl">👥</span>
+       <div>
+        <p class="font-bold text-sm">Squad 3v3</p>
+        <p class="text-xs text-gray-400">Berpasukan</p>
+       </div>
+      </div>
+      <div class="section-card flex items-center gap-3 tactile-btn cursor-pointer">
+       <span class="text-2xl">🐉</span>
+       <div>
+        <p class="font-bold text-sm">Boss Raid</p>
+        <p class="text-xs text-gray-400">Kalahkan boss bersama</p>
+       </div>
+      </div>
+      <div class="section-card flex items-center gap-3 tactile-btn cursor-pointer">
+       <span class="text-2xl">🏆</span>
+       <div>
+        <p class="font-bold text-sm">Tournament</p>
+        <p class="text-xs text-gray-400">Pertandingan mingguan</p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div><!-- SCREEN: SHOP -->
+   <div id="screen-shop" class="screen">
+    <div class="p-4"><button onclick="showScreen('home')" class="text-cyan-400 text-sm mb-3 tactile-btn">← Kembali</button>
+     <h2 data-template-id="shop-title" class="canva-text text-xl font-bold text-center mb-4" style="color: rgb(52, 211, 153); font-weight: 700; font-style: normal; font-size: 24px;">🛒 Kedai Universe</h2>
+     <div class="grid grid-cols-2 gap-3 max-w-md mx-auto">
+      <div class="section-card text-center tactile-btn">
+       <div class="text-2xl mb-1">
+        🦸
+       </div>
+       <p class="text-xs font-bold">Hero Pack</p>
+       <p class="text-[10px] text-yellow-300">💎 500</p>
+      </div>
+      <div class="section-card text-center tactile-btn">
+       <div class="text-2xl mb-1">
+        🐾
+       </div>
+       <p class="text-xs font-bold">Pet Egg</p>
+       <p class="text-[10px] text-yellow-300">💎 300</p>
+      </div>
+      <div class="section-card text-center tactile-btn">
+       <div class="text-2xl mb-1">
+        👗
+       </div>
+       <p class="text-xs font-bold">Skin Bundle</p>
+       <p class="text-[10px] text-yellow-300">🪙 5000</p>
+      </div>
+      <div class="section-card text-center tactile-btn">
+       <div class="text-2xl mb-1">
+        ⚡
+       </div>
+       <p class="text-xs font-bold">Energy x30</p>
+       <p class="text-[10px] text-yellow-300">💎 50</p>
+      </div>
+     </div>
+    </div>
+   </div><!-- SCREEN: MORE -->
+   <div id="screen-more" class="screen">
+    <div class="p-4">
+     <h2 class="text-xl font-bold text-center mb-4 crystal-glow">📋 Menu Penuh</h2>
+     <div class="grid grid-cols-3 sm:grid-cols-4 gap-2 max-w-lg mx-auto"><button class="menu-btn tactile-btn" onclick="showScreen('subject')">
+       <div class="text-lg">
+        📚
+       </div>
+       <div class="text-[9px] mt-1">
+        Subject
+       </div></button> <button class="menu-btn tactile-btn" onclick="showScreen('story')">
+       <div class="text-lg">
+        📖
+       </div>
+       <div class="text-[9px] mt-1">
+        Story
+       </div></button> <button class="menu-btn tactile-btn" onclick="showScreen('galaxy')">
+       <div class="text-lg">
+        🗺️
+       </div>
+       <div class="text-[9px] mt-1">
+        Galaxy
+       </div></button> <button class="menu-btn tactile-btn" onclick="showScreen('battle')">
+       <div class="text-lg">
+        ⚔️
+       </div>
+       <div class="text-[9px] mt-1">
+        Battle
+       </div></button> <button class="menu-btn tactile-btn" onclick="showScreen('rank')">
+       <div class="text-lg">
+        🏅
+       </div>
+       <div class="text-[9px] mt-1">
+        Rank
+       </div></button> <button class="menu-btn tactile-btn" onclick="showScreen('spin')">
+       <div class="text-lg">
+        🎰
+       </div>
+       <div class="text-[9px] mt-1">
+        Spin
+       </div></button> <button class="menu-btn tactile-btn" onclick="showScreen('hero-system')">
+       <div class="text-lg">
+        🦸
+       </div>
+       <div class="text-[9px] mt-1">
+        Hero
+       </div></button> <button class="menu-btn tactile-btn" onclick="showScreen('pet-system')">
+       <div class="text-lg">
+        🐾
+       </div>
+       <div class="text-[9px] mt-1">
+        Pet
+       </div></button> <button class="menu-btn tactile-btn" onclick="showScreen('shop')">
+       <div class="text-lg">
+        🛒
+       </div>
+       <div class="text-[9px] mt-1">
+        Shop
+       </div></button> <button class="menu-btn tactile-btn" onclick="showScreen('pass')">
+       <div class="text-lg">
+        🎫
+       </div>
+       <div class="text-[9px] mt-1">
+        Pass
+       </div></button> <button class="menu-btn tactile-btn" onclick="showScreen('stage-demo')">
+       <div class="text-lg">
+        ⚡
+       </div>
+       <div class="text-[9px] mt-1">
+        Stage
+       </div></button>
+     </div>
+    </div>
+   </div><!-- SCREEN: STORY -->
+   <div id="screen-story" class="screen">
+    <div class="p-4 max-w-lg mx-auto"><button onclick="showScreen('home')" class="text-cyan-400 text-sm mb-3 tactile-btn">← Kembali</button>
+     <h2 data-template-id="story-title" class="canva-text text-xl font-bold mb-3" style="color: rgb(167, 139, 250); font-weight: 700; font-style: normal; font-size: 24px;">📖 Kisah Universe</h2>
+     <div data-template-id="story-panel" class="canva-panel section-card" style="background: rgba(20, 10, 40, 0.85);">
+      <p data-template-id="story-text" class="canva-text text-sm leading-relaxed" style="color: rgb(216, 180, 254); font-weight: 400; font-style: normal; font-size: 16px;">Dahulu kala, Core Crystal Universe menyimpan segala ilmu di alam semesta. Namun, Void Emperor telah mencuri dan menyerakkan crystal ke seluruh galaksi. Kini, Express Ranger mesti menjelajah setiap planet, menjawab cabaran, dan mengumpul semula crystal untuk memulihkan keseimbangan universe!</p>
+     </div>
+    </div>
+   </div><!-- SCREEN: RANK -->
+   <div id="screen-rank" class="screen">
+    <div class="p-4 max-w-lg mx-auto"><button onclick="showScreen('home')" class="text-cyan-400 text-sm mb-3 tactile-btn">← Kembali</button>
+     <h2 class="text-xl font-bold text-center mb-4 crystal-glow">🏅 Sistem Rank</h2>
+     <div class="flex flex-wrap gap-2 justify-center mb-4"><span class="rank-badge" style="background:#cd7f32;color:#fff">🥉 Bronze</span> <span class="rank-badge" style="background:#c0c0c0;color:#333">🥈 Silver</span> <span class="rank-badge" style="background:#ffd700;color:#333">🥇 Gold</span> <span class="rank-badge" style="background:#e5e4e2;color:#333">💠 Platinum</span> <span class="rank-badge" style="background:#b9f2ff;color:#333">💎 Diamond</span> <span class="rank-badge" style="background:#7c3aed;color:#fff">👑 Master</span> <span class="rank-badge" style="background:linear-gradient(135deg,#7c3aed,#06b6d4);color:#fff">🌌 Galaxy</span>
+     </div>
+     <div class="section-card text-center">
+      <p class="text-sm">Rank Semasa: <span class="text-yellow-400 font-bold">Gold III</span></p>
+     </div>
+    </div>
+   </div><!-- SCREEN: SPIN -->
+   <div id="screen-spin" class="screen">
+    <div class="p-4 max-w-lg mx-auto text-center"><button onclick="showScreen('home')" class="text-cyan-400 text-sm mb-3 text-left block tactile-btn">← Kembali</button>
+     <h2 class="text-xl font-bold mb-4 crystal-glow">🎰 Lucky Spin</h2>
+     <div class="w-48 h-48 mx-auto rounded-full border-4 border-purple-500 flex items-center justify-center mb-4 glow-pulse" id="spin-wheel" style="background:conic-gradient(#7c3aed,#06b6d4,#fbbf24,#ef4444,#10b981,#f472b6,#7c3aed);transition:transform 3s cubic-bezier(.17,.67,.12,.99)">
+      <div class="w-16 h-16 rounded-full bg-black/80 flex items-center justify-center text-2xl font-bold">
+       🎁
+      </div>
+     </div><button class="neon-btn tactile-btn px-6 py-2 rounded-full font-bold" style="color:#06b6d4" onclick="spinWheel()">🎰 SPIN</button>
+     <p id="spin-result" class="mt-3 text-sm text-yellow-300 hidden"></p>
+    </div>
+   </div><!-- SCREEN: HERO SYSTEM -->
+   <div id="screen-hero-system" class="screen">
+    <div class="p-4 max-w-2xl mx-auto"><button onclick="showScreen('home')" class="text-cyan-400 text-sm mb-3 tactile-btn">← Kembali</button>
+     <h2 data-template-id="hero-system-title" class="canva-text text-2xl font-bold text-center mb-2 crystal-glow" style="color: rgb(233, 213, 255); font-weight: 700; font-style: normal; font-size: 24px;">🦸 Hero System</h2>
+     <p data-template-id="hero-system-intro" class="canva-text text-xs text-purple-200 text-center mb-4" style="color: rgb(216, 180, 254); font-weight: 400; font-style: normal; font-size: 16px;">Kumpulkan mascot sci-fi dari seluruh universe dan naikkan kuasa mereka!</p>
+     <div class="grid grid-cols-3 gap-3 mb-4">
+      <div class="section-card text-center">
+       <div class="text-3xl hero-idle">
+        🦸‍♂️
+       </div>
+       <p class="text-xs font-bold mt-1">Nova Ranger</p>
+       <p class="text-[10px] text-cyan-300">Lv.8</p>
+      </div>
+      <div class="section-card text-center">
+       <div class="text-3xl breathing">
+        🧙
+       </div>
+       <p class="text-xs font-bold mt-1">Astro Mage</p>
+       <p class="text-[10px] text-purple-300">Lv.3</p>
+      </div>
+      <div class="section-card text-center opacity-50">
+       <div class="text-3xl">
+        🥷
+       </div>
+       <p class="text-xs font-bold mt-1">Shadow Blade</p>
+       <p class="text-[10px] text-gray-400">🔒</p>
+      </div>
+     </div>
+     <p data-template-id="hero-unlock-rule" class="canva-text text-[11px] text-center text-purple-300" style="color: rgb(196, 181, 253); font-weight: 400; font-style: normal; font-size: 16px;">3 hero beginner percuma. Hero lain dibuka dengan Coin, Crystal, achievement atau planet tertentu.</p>
+    </div>
+   </div><!-- SCREEN: PET SYSTEM -->
+   <div id="screen-pet-system" class="screen">
+    <div class="p-4 max-w-2xl mx-auto"><button onclick="showScreen('home')" class="text-cyan-400 text-sm mb-3 tactile-btn">← Kembali</button>
+     <h2 data-template-id="pet-system-title" class="canva-text text-2xl font-bold text-center mb-2 crystal-glow" style="color: rgb(233, 213, 255); font-weight: 700; font-style: normal; font-size: 24px;">🐾 Pet System</h2>
+     <p data-template-id="pet-system-intro" class="canva-text text-xs text-purple-200 text-center mb-4" style="color: rgb(216, 180, 254); font-weight: 400; font-style: normal; font-size: 16px;">Pet menemani Express Ranger, memberi bonus, hint dan memulihkan nyawa!</p>
+     <div class="grid grid-cols-3 gap-3 mb-4">
+      <div class="section-card text-center">
+       <div class="text-3xl pet-bounce">
+        🐉
+       </div>
+       <p class="text-xs font-bold mt-1">Blaze Jr.</p>
+       <p class="text-[10px] text-orange-300">Lv.5 • +10% XP</p>
+      </div>
+      <div class="section-card text-center">
+       <div class="text-3xl pet-play">
+        🦊
+       </div>
+       <p class="text-xs font-bold mt-1">Foxia</p>
+       <p class="text-[10px] text-orange-300">Lv.2 • +5% Coin</p>
+      </div>
+      <div class="section-card text-center opacity-50">
+       <div class="text-3xl">
+        🦉
+       </div>
+       <p class="text-xs font-bold mt-1">Owlstar</p>
+       <p class="text-[10px] text-gray-400">🔒</p>
+      </div>
+     </div>
+    </div>
+   </div><!-- SCREEN: PASS -->
+   <div id="screen-pass" class="screen">
+    <div class="p-4 max-w-lg mx-auto"><button onclick="showScreen('home')" class="text-cyan-400 text-sm mb-3 tactile-btn">← Kembali</button>
+     <h2 class="text-xl font-bold text-center mb-4 crystal-glow">🎫 Express Pass</h2>
+     <div class="space-y-2">
+      <div class="section-card flex justify-between">
+       <span class="text-sm">Lv.1</span><span class="text-xs">🪙 100 | 💎 5</span>
+      </div>
+      <div class="section-card flex justify-between">
+       <span class="text-sm">Lv.5</span><span class="text-xs">Hero Fragment</span>
+      </div>
+      <div class="section-card flex justify-between">
+       <span class="text-sm">Lv.10</span><span class="text-xs">Pet Egg</span>
+      </div>
+      <div class="section-card flex justify-between">
+       <span class="text-sm">Lv.30</span><span class="text-xs">🦸 Exclusive Hero</span>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div><!-- end main --> <!-- BOTTOM NAV -->
+  <nav class="bottom-nav bg-black/90 border-t border-purple-500/30 flex justify-around items-center py-2 px-1" role="navigation" aria-label="Main navigation"><button class="nav-item active flex flex-col items-center px-2 py-1 tactile-btn" onclick="navTo('home')"><span class="text-lg nav-glow">🏠</span><span class="text-[10px]">Home</span></button> <button class="nav-item flex flex-col items-center px-2 py-1 tactile-btn" onclick="navTo('galaxy')"><span class="text-lg nav-glow">🗺️</span><span class="text-[10px]">Galaxy</span></button> <button class="nav-item flex flex-col items-center px-2 py-1 tactile-btn" onclick="navTo('subject')"><span class="text-lg nav-glow">📚</span><span class="text-[10px]">Subject</span></button> <button class="nav-item flex flex-col items-center px-2 py-1 tactile-btn" onclick="navTo('shop')"><span class="text-lg nav-glow">🛒</span><span class="text-[10px]">Shop</span></button> <button class="nav-item flex flex-col items-center px-2 py-1 tactile-btn" onclick="navTo('more')"><span class="text-lg nav-glow">📋</span><span class="text-[10px]">Lagi</span></button>
+  </nav>
+  <script src="/_sdk/115ac030b66cb09d.editing_sdk.js" integrity="sha512-iprSVFeQYn3ohqCRHg8icBdabh/A6CUj/2P1u5xqVokDLyuISmuH1lR/W3Xi4krquqPpFtWk6+whjf7zAIy5Zw=="></script>
+  <script>
+// Loading
+const tips=['💡 Combo 20x memberi rocket boost!','💡 Pet boleh memulihkan nyawa!','💡 Cari portal tersembunyi!','💡 Guardian memberi Crystal istimewa!','💡 Setiap planet ada 20 stage!'];
+document.getElementById('loading-tip').textContent=tips[Math.floor(Math.random()*tips.length)];
+setTimeout(()=>{document.getElementById('loading-screen').classList.add('fade-out');setTimeout(()=>document.getElementById('loading-screen').style.display='none',500)},1800);
+
+// Starfield
+(function(){
+const sf=document.getElementById('starfield');
+for(let i=0;i<80;i++){const s=document.createElement('div');s.className='star';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.setProperty('--dur',(Math.random()*3+2)+'s');s.style.animationDelay=Math.random()*3+'s';const size=(Math.random()*2.5+.5)+'px';s.style.width=s.style.height=size;sf.appendChild(s);}
+for(let i=0;i<3;i++){const ss=document.createElement('div');ss.className='shooting-star';ss.style.top=Math.random()*40+'%';ss.style.right=Math.random()*30+'%';ss.style.animationDelay=(Math.random()*8+i*5)+'s';sf.appendChild(ss);}
+})();
+
+// Nebula
+(function(){
+const nl=document.getElementById('nebula-layer');
+const colors=['rgba(124,58,237,.15)','rgba(6,182,212,.1)','rgba(251,191,36,.08)','rgba(244,114,182,.1)'];
+for(let i=0;i<5;i++){const p=document.createElement('div');p.className='nebula-particle';p.style.width=p.style.height=(Math.random()*200+100)+'px';p.style.left=Math.random()*100+'%';p.style.top=Math.random()*100+'%';p.style.background=colors[i%colors.length];nl.appendChild(p);}
+})();
+
+// Game state
+let gameState={lives:5,combo:0,stars:3};
+
+function closeModal(){document.getElementById('welcome-modal').classList.add('hidden');}
+function resumeAdventure(){document.getElementById('resume-prompt').classList.add('hidden');showScreen('stage-demo');}
+function dismissResume(){document.getElementById('resume-prompt').classList.add('hidden');}
+
+function showReward(items,text){
+const overlay=document.getElementById('reward-overlay');const container=document.getElementById('reward-items');container.innerHTML='';
+items.forEach((item,i)=>{const d=document.createElement('div');d.className='text-3xl diamond-fly';d.style.animationDelay=(i*.2)+'s';d.textContent=item;container.appendChild(d);});
+document.getElementById('reward-text').textContent=text;overlay.classList.remove('hidden');
+}
+function closeReward(){document.getElementById('reward-overlay').classList.add('hidden');}
+
+function showLevelUp(detail){
+document.getElementById('levelup-detail').textContent=detail;document.getElementById('levelup-overlay').classList.remove('hidden');
+const cc=document.getElementById('confetti-container');cc.innerHTML='';
+const colors=['#7c3aed','#06b6d4','#fbbf24','#f472b6','#10b981'];
+for(let i=0;i<30;i++){const c=document.createElement('div');c.className='confetti';c.style.left=Math.random()*100+'%';c.style.top='-10px';c.style.background=colors[Math.floor(Math.random()*colors.length)];c.style.animationDelay=(Math.random()*.5)+'s';cc.appendChild(c);}
+}
+function closeLevelUp(){document.getElementById('levelup-overlay').classList.add('hidden');}
+
+function showCutscene(icon,text){document.getElementById('cutscene-icon').textContent=icon;document.getElementById('cutscene-text-el').textContent=text;document.getElementById('cutscene-overlay').classList.remove('hidden');}
+function closeCutscene(){document.getElementById('cutscene-overlay').classList.add('hidden');}
+
+function celebrate(msg){
+const t=document.createElement('div');t.className='fixed top-5 left-1/2 -translate-x-1/2 z-[60] section-card text-center confetti-burst';
+t.innerHTML='<div class="text-2xl">🎆🏆🎉</div><div class="text-sm font-bold text-yellow-300">'+msg+'</div>';
+document.body.appendChild(t);setTimeout(()=>t.remove(),900);
+}
+
+function showScreen(id){
+document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+const el=document.getElementById('screen-'+id);if(el)el.classList.add('active');
+const navMap={home:0,galaxy:1,subject:2,shop:3,more:4};
+document.querySelectorAll('.nav-item').forEach((n,i)=>{n.classList.toggle('active',i===(navMap[id]??-1));});
+window.scrollTo(0,0);
+}
+function navTo(id){showScreen(id);}
+
+// Stage demo
+let stageRunning=false;
+function startStage(){
+if(stageRunning)return;stageRunning=true;gameState.combo=0;gameState.stars=3;updateStageUI();
+const text=document.getElementById('stage-text');
+const steps=[
+{t:0,msg:'3️⃣ Bersiap sedia...'},{t:1000,msg:'2️⃣ ...'},{t:2000,msg:'1️⃣ GO!'},
+{t:3000,msg:'🦸 Hero memasuki stage!'},{t:4500,msg:'🪙 Coin +50'},
+{t:6000,msg:'🧰 Treasure ditemui!'},{t:7500,msg:'👾 Enemy!'},
+{t:9000,msg:'💎 Crystal Challenge!'},
+{t:11000,msg:'✅ Betul! 🔥 Combo +1'},{t:12500,msg:'🎆 VICTORY!'},
+{t:14000,msg:'🏆 Ganjaran!'}
+];
+steps.forEach(s=>{setTimeout(()=>{
+text.innerHTML=s.msg;
+if(s.msg.includes('Combo')){gameState.combo++;updateStageUI();}
+if(s.msg.includes('VICTORY'))celebrate('⭐⭐⭐ Stage Lengkap!');
+if(s.msg.includes('Ganjaran'))showReward(['🪙','💎','⭐'],'+100 Coin · +50 XP · +1 Crystal');
+},s.t);});
+setTimeout(()=>{stageRunning=false;text.innerHTML='Stage selesai! Tekan untuk bermain semula.';setTimeout(()=>showLevelUp('Express Ranger → Lv.15!'),1500);},15000);
+}
+function updateStageUI(){
+document.getElementById('stage-lives').textContent='❤️'.repeat(gameState.lives)+'🖤'.repeat(5-gameState.lives);
+document.getElementById('stage-combo').textContent='🔥 Combo: '+gameState.combo;
+document.getElementById('stage-stars').textContent='⭐'.repeat(gameState.stars)+'☆'.repeat(3-gameState.stars);
+document.getElementById('lives-display').textContent='❤️'.repeat(gameState.lives)+'🖤'.repeat(5-gameState.lives);
+}
+
+let spinAngle=0;
+function spinWheel(){
+const wheel=document.getElementById('spin-wheel');spinAngle+=1440+Math.random()*720;
+wheel.style.transform='rotate('+spinAngle+'deg)';
+const rewards=['🪙 500 Coin!','💎 10 Diamond!','⚡ Energy x5!','🐾 Pet Egg!','⭐ 200 XP!'];
+setTimeout(()=>{const r=rewards[Math.floor(Math.random()*rewards.length)];const el=document.getElementById('spin-result');el.textContent='🎉 '+r;el.classList.remove('hidden');celebrate(r);},3200);
+}
+
+// Neon btn glow
+document.querySelectorAll('.neon-btn').forEach(btn=>{
+btn.addEventListener('mousemove',e=>{const rect=btn.getBoundingClientRect();btn.style.setProperty('--x',((e.clientX-rect.left)/rect.width*100)+'%');btn.style.setProperty('--y',((e.clientY-rect.top)/rect.height*100)+'%');});
+});
+
+lucide.createIcons();
+</script>
+ 
+</body></html>
