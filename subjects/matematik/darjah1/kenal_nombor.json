@@ -1,1 +1,50 @@
-[]
+[
+  {
+    "id": 1,
+    "subjek": "Matematik",
+    "darjah": 1,
+    "kategori": "Kenal Nombor",
+    "soalan": "Apakah nombor bagi perkataan 'Lima'?",
+    "pilihan": [
+      "3",
+      "5",
+      "7",
+      "9"
+    ],
+    "jawapan": 1,
+    "coin": 10,
+    "xp": 5
+  },
+  {
+    "id": 2,
+    "subjek": "Matematik",
+    "darjah": 1,
+    "kategori": "Kenal Nombor",
+    "soalan": "Apakah nombor bagi perkataan 'Sepuluh'?",
+    "pilihan": [
+      "8",
+      "9",
+      "10",
+      "11"
+    ],
+    "jawapan": 2,
+    "coin": 10,
+    "xp": 5
+  },
+  {
+    "id": 3,
+    "subjek": "Matematik",
+    "darjah": 1,
+    "kategori": "Kenal Nombor",
+    "soalan": "Apakah nombor bagi perkataan 'Dua Belas'?",
+    "pilihan": [
+      "12",
+      "13",
+      "14",
+      "15"
+    ],
+    "jawapan": 0,
+    "coin": 10,
+    "xp": 5
+  }
+]
