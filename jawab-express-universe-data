@@ -1,0 +1,41 @@
+jawab-express-universe-data/
+
+└── subjects/
+
+    ├── matematik/
+    │   ├── darjah1/
+    │   │   ├── kategori1_kenal_nombor.json
+    │   │   ├── kategori2_tambah.json
+    │   │   ├── kategori3_tolak.json
+    │   │   ├── kategori4_masa_dan_wang.json
+    │   │   ├── kategori5_bentuk_dan_ruang.json
+    │   │   └── kategori6_penyelesaian_masalah.json
+    │   ├── darjah2/
+    │   ├── darjah3/
+    │   ├── darjah4/
+    │   ├── darjah5/
+    │   └── darjah6/
+    │
+    ├── bahasa_melayu/
+    │   ├── darjah1/
+    │   ├── darjah2/
+    │   ├── darjah3/
+    │   ├── darjah4/
+    │   ├── darjah5/
+    │   └── darjah6/
+    │
+    ├── english/
+    │   ├── darjah1/
+    │   ├── darjah2/
+    │   ├── darjah3/
+    │   ├── darjah4/
+    │   ├── darjah5/
+    │   └── darjah6/
+    │
+    └── sains/
+        ├── darjah1/
+        ├── darjah2/
+        ├── darjah3/
+        ├── darjah4/
+        ├── darjah5/
+        └── darjah6/
